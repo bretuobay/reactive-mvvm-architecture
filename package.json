@@ -20,5 +20,8 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "mvvm-core": "file:../mvvm-core/mvvm-core-0.1.0.tgz"
+  }
 }
