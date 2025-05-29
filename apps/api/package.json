@@ -1,0 +1,39 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@foal/cli": "^4.5.1",
+    "@repo/typescript-config": "*",
+    "@types/express": "^5.0.2",
+    "@types/mocha": "10.0.7",
+    "@types/node": "^22.15.25",
+    "@typescript-eslint/eslint-plugin": "8.32.1",
+    "@typescript-eslint/parser": "8.32.1",
+    "concurrently": "~9.0.0",
+    "dotenv": "^16.5.0",
+    "eslint": "^9.26.0",
+    "express": "^5.1.0",
+    "install": "^0.13.0",
+    "nodemon": "^3.1.10",
+    "npm": "^11.4.1",
+    "supervisor": "~0.12.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "@foal/core": "^4.5.1",
+    "@foal/typeorm": "^4.5.1",
+    "sequelize-typescript": "^2.1.6",
+    "source-map-support": "~0.5.21",
+    "sqlite3": "~5.1.7",
+    "typeorm": "0.3.24"
+  }
+}
