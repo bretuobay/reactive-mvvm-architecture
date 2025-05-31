@@ -22,6 +22,6 @@
     "packages/*"
   ],
   "dependencies": {
-    "mvvm-core": "file:../mvvm-core/mvvm-core-0.1.0.tgz"
+    "mvvm-core":"^0.3.6"
   }
 }
