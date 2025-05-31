@@ -9,3 +9,10 @@ export const CreateSensorReadingSchema = z.object({
 });
 
 export type CreateSensorReadingDTO = z.infer<typeof CreateSensorReadingSchema>;
+
+// Schema for validating sensor readings received from the server (includes ID)
+export const SensorReadingSchema = CreateSensorReadingSchema.extend({
+  id: z.number().int().positive(),
+});
+
+export type SensorReadingDTO = z.infer<typeof SensorReadingSchema>;
