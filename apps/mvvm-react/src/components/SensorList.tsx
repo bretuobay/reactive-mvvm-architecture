@@ -3,7 +3,7 @@ import { sensorViewModel } from "@repo/view-models/SensorViewModel";
 import { useObservable } from "../hooks/useObservable";
 
 export function SensorList() {
-  const sensors = useObservable(sensorViewModel.sensors$, []);
+  const sensors = useObservable(sensorViewModel.data$, []);
   console.log("Sensors data updated:", sensors);
 
   useEffect(() => {

@@ -24,4 +24,14 @@ export class ThresholdAlertModel extends RestfulApiModel<
   constructor() {
     super(CONFIG);
   }
+
+  async fetch(id?: string | string[]): Promise<void> {
+    console.log(`[ThresholdAlertModel] Fetching data with id: ${id}`);
+    try {
+      await super.fetch(id);
+      console.log('[ThresholdAlertModel] Data after fetch:', this.data$.getValue());
+    } catch (error) {
+      console.error('[ThresholdAlertModel] Error during fetch:', error);
+    }
+  }
 }

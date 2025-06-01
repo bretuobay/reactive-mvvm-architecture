@@ -24,4 +24,14 @@ export class SensorReadingModel extends RestfulApiModel<
   constructor() {
     super(CONFIG);
   }
+
+  async fetch(id?: string | string[]): Promise<void> {
+    console.log(`[SensorReadingModel] Fetching data with id: ${id}`);
+    try {
+      await super.fetch(id);
+      console.log('[SensorReadingModel] Data after fetch:', this.data$.getValue());
+    } catch (error) {
+      console.error('[SensorReadingModel] Error during fetch:', error);
+    }
+  }
 }
