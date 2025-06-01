@@ -1,13 +1,17 @@
-import { greenHouseViewModel } from "@repo/view-models/GreenHouseViewModel";
 import "./App.css";
-import { useObservable } from "./hooks/useObservable";
+import { GreenhouseList } from "./components/GreenhouseList";
+import { SensorList } from "./components/SensorList";
+import { SensorReadingList } from "./components/SensorReadingList";
+import { ThresholdAlertList } from "./components/ThresholdAlertList";
 
 function App() {
-  const greenHouses = useObservable(greenHouseViewModel.data$, []);
-  console.log("greenHouses", greenHouses);
   return (
     <>
       <h1>Vite + React Lets Go</h1>
+      <GreenhouseList />
+      <SensorList />
+      <SensorReadingList />
+      <ThresholdAlertList />
     </>
   );
 }

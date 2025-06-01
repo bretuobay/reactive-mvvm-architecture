@@ -1,5 +1,5 @@
 import { RestfulApiViewModel } from "mvvm-core";
-import { SensorModel } from "../../models";
+import { SensorModel } from "../../models/src/SensorModel";
 
 import { SensorListSchema, SensorListData } from "../../models";
 
@@ -11,3 +11,6 @@ export class SensorViewModel extends RestfulApiViewModel<
     super(model);
   }
 }
+
+const sensorModel = new SensorModel();
+export const sensorViewModel = new SensorViewModel(sensorModel);

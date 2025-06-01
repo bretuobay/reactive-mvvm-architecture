@@ -9,7 +9,7 @@ In this task, we care about the packages specifically, the models and view-model
 
 
 <!-- RestfulApiModel -->
-
+```typescript
 import { z, ZodSchema } from "zod";
 import { BaseModel } from "./BaseModel"; // Assuming IDisposable is also needed/exported
 
@@ -619,3 +619,4 @@ export class RestfulApiViewModel<TData, TSchema extends ZodSchema<TData>> {
     // }
   }
 }
+```

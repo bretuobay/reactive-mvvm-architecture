@@ -10,6 +10,8 @@ export class GreenHouseViewModel extends RestfulApiViewModel<
 > {
   constructor(model: GreenHouseModel) {
     super(model);
+
+    this.model = model;
   }
 }
 
