@@ -8,4 +8,7 @@ export const CreateSensorReadingSchema = z.object({
   value: z.number(),
 });
 
-export type CreateSensorReadingDTO = z.infer<typeof CreateSensorReadingSchema>;
+export type SensorReadingData = z.infer<typeof CreateSensorReadingSchema>;
+
+export const SensorReadingListSchema = z.array(CreateSensorReadingSchema);
+export type SensorReadingListData = z.infer<typeof SensorReadingListSchema>;

@@ -1,21 +1,24 @@
 import { RestfulApiModel } from "mvvm-core";
-import { CreateGreenhouseSchema, GreenhouseDTO } from "./schemas";
+import { GreenhouseListSchema, GreenhouseListData } from "./schemas";
 import { nativeFetcher } from "./utils/fetcher";
-import { z } from "zod";
 import { apiRegistry } from "./services/services";
+import { API_BASE_URL } from "./config";
 
-const { method, path } = apiRegistry.greenhouse.list;
+const { path } = apiRegistry.greenhouse.list;
+
+const CONFIG = {
+  baseUrl: API_BASE_URL,
+  endpoint: path,
+  fetcher: nativeFetcher,
+  schema: GreenhouseListSchema,
+  initialData: [],
+};
+
 export class GreenHouseModel extends RestfulApiModel<
-  GreenhouseDTO[],
-  z.infer<typeof CreateGreenhouseSchema>
+  GreenhouseListData,
+  typeof GreenhouseListSchema
 > {
   constructor() {
-    // api/greenhouses should come from the services.ts file
-    super(
-      path,
-      "api/greenhouses",
-      nativeFetcher,
-      z.array(CreateGreenhouseSchema)
-    );
+    super(CONFIG);
   }
 }

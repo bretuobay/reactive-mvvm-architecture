@@ -1,6 +1,6 @@
 // src/utils/nativeFetcher.ts
 
-import { Fetcher } from "mvvm-core"; // Assuming RestfulApiModel.ts defines Fetcher type
+// import { Fetcher } from "mvvm-core"; // Assuming RestfulApiModel.ts defines Fetcher type
 
 /**
  * Custom error class for API responses that are not OK (status 2xx).
@@ -45,7 +45,8 @@ export class HttpError extends Error {
  * @throws `Error` with `name: 'AbortError'` if the request times out.
  * @throws other `Error` types for network issues or unexpected problems.
  */
-export const nativeFetcher: Fetcher = async (
+export const nativeFetcher: any = async (
+  //Fetcher should be fixed
   url: string,
   options?: RequestInit,
   timeoutMs: number = 30000 // Default timeout of 30 seconds

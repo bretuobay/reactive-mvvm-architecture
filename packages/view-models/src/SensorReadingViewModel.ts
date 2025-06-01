@@ -1,15 +1,12 @@
-export class SensorReadingViewModel {
-  // Add common properties for sensor readings if needed
-  constructor() {
-    // Initialize base class properties here
-  }
+import { RestfulApiViewModel } from "mvvm-core";
+import { SensorReadingModel } from "@repo/models";
+import { SensorReadingListData, SensorReadingListSchema } from "@repo/models";
 
-  // Add base methods for sensor reading view models
-  public initialize(): void {
-    // Initialization logic
-  }
-
-  public dispose(): void {
-    // Cleanup logic
+export class SensorReadingViewModel extends RestfulApiViewModel<
+  SensorReadingListData,
+  typeof SensorReadingListSchema
+> {
+  constructor(model: SensorReadingModel) {
+    super(model);
   }
 }

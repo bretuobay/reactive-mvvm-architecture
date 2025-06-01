@@ -1,15 +1,13 @@
-export class SensorViewModel {
-  // Base properties for all sensor view models
-  id: string;
-  name: string;
+import { RestfulApiViewModel } from "mvvm-core";
+import { SensorModel } from "@repo/models";
 
-  constructor(id: string, name: string) {
-    this.id = id;
-    this.name = name;
-  }
+import { SensorListSchema, SensorListData } from "@repo/models";
 
-  // Base method to update sensor data
-  update(data: any): void {
-    // Implement in derived classes
+export class SensorViewModel extends RestfulApiViewModel<
+  SensorListData,
+  typeof SensorListSchema
+> {
+  constructor(model: SensorModel) {
+    super(model);
   }
 }

@@ -2,7 +2,6 @@ import { Router, Request, Response } from "express";
 import { SensorReading } from "../models/SensorReading";
 import { Sensor } from "../models/Sensor";
 import { Greenhouse } from "../models/Greenhouse";
-import { Op } from "sequelize"; // For date range queries if we implement them later
 import { z } from "zod";
 
 const router = Router();

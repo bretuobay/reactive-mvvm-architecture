@@ -1,11 +1,13 @@
-export class GreenHouseViewModel {
-  // Base properties can be added here
-  constructor() {
-    // Initialization logic
-  }
+import { RestfulApiViewModel } from "mvvm-core";
+import { GreenHouseModel } from "@repo/models";
 
-  // Base methods can be added here
-  initialize(): void {
-    // Placeholder for initialization logic
+import { GreenhouseListData, GreenhouseListSchema } from "@repo/models";
+
+export class GreenHouseViewModel extends RestfulApiViewModel<
+  GreenhouseListData,
+  typeof GreenhouseListSchema
+> {
+  constructor(model: GreenHouseModel) {
+    super(model);
   }
 }
