@@ -7,7 +7,10 @@ export function ThresholdAlertList() {
   console.log("ThresholdAlertList data updated:", thresholds);
 
   useEffect(() => {
-    thresholdAlertViewModel.fetchCommand.execute();
+    const fetchData = async () => {
+      await thresholdAlertViewModel.fetchCommand.execute();
+    };
+    fetchData();
   }, []);
 
   return (

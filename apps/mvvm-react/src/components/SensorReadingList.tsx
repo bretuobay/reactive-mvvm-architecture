@@ -7,7 +7,10 @@ export function SensorReadingList() {
   console.log("SensorReadingList data updated:", readingList);
 
   useEffect(() => {
-    sensorReadingViewModel.fetchCommand.execute();
+    const fetchData = async () => {
+      await sensorReadingViewModel.fetchCommand.execute();
+    };
+    fetchData();
   }, []);
 
   return (

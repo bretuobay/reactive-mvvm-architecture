@@ -7,7 +7,10 @@ export function GreenhouseList() {
   console.log("GreenHouse data updated:", greenHouses);
 
   useEffect(() => {
-    greenHouseViewModel.fetchCommand.execute();
+    const fetchData = async () => {
+      await greenHouseViewModel.fetchCommand.execute();
+    };
+    fetchData();
   }, []);
 
   return (

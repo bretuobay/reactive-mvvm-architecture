@@ -7,7 +7,10 @@ export function SensorList() {
   console.log("Sensors data updated:", sensors);
 
   useEffect(() => {
-    sensorViewModel.fetchCommand.execute();
+    const fetchData = async () => {
+      await sensorViewModel.fetchCommand.execute();
+    };
+    fetchData();
   }, []);
 
   return (
