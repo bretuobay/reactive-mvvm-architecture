@@ -1,5 +1,5 @@
 import { RestfulApiModel } from "mvvm-core";
-import { GreenhouseListSchema, GreenhouseListData } from "./schemas";
+import { GreenhouseListSchema, type GreenhouseListData } from "./schemas";
 import { nativeFetcher } from "./utils/fetcher";
 import { apiRegistry } from "./services/services";
 import { API_BASE_URL } from "./config";

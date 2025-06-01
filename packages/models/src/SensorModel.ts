@@ -2,7 +2,7 @@ import { RestfulApiModel } from "mvvm-core";
 import { CreateSensorSchema } from "./schemas";
 import { nativeFetcher } from "./utils/fetcher";
 import { z } from "zod";
-import { SensorListSchema, SensorListData } from "./schemas";
+import { SensorListSchema, type SensorListData } from "./schemas";
 import { API_BASE_URL } from "./config";
 
 const CONFIG = {

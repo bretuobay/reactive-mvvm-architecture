@@ -31,7 +31,7 @@ const corsOptions: CorsOptions = {
 };
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3700;
 
 // Enable CORS with specified options
 app.use(cors(corsOptions));

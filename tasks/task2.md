@@ -5,8 +5,24 @@
 You have a turbo repo managed application to illustrate mvvm architecture for web applications. 
 
 Inside apps folder you have various apps (api, mvvm-angular, mvvm-react etc)
-In this task, we care about the packages specifically, the models and view-models packages. These should use the mvvm-core package in the root package.json to create Models and View models for our domain objects GreenHouse, Sensor, SensorReadings, Alerts. Below I will give you for your reference what the base Model ( RestfulApiModel ) and the view-model (RestfulApiViewModel) from the package mvvm-core look like. The idea is that these two will have you build the model and view model for the domain for CRUD applications so that later the applications in apps can use these to easily build apps. The end goal is to illustrate that the MVVM pattern can be used for web applications and that business logic models and view logic does not have to be tightly coupled to the rendering framework ( react , vue , angular etc.)
+In this task, you care about mvvm-react. There are react components set up to display data inside apps/mvvm-react/src/components
 
+GreenhouseList
+SensorList
+SensorReadingList
+ThresholdAlertList
+
+These already import their view models from :
+
+@repo/view-models
+
+ Below I will give you for your reference what the base Model ( RestfulApiModel ) and the view-model (RestfulApiViewModel) from the package mvvm-core look like.
+
+ In this task we want to execute a command to fetch data for our react components and display them as a list ( all components should just list).
+
+ You are allowed to modify the view models and the react components to achieve this call.
+
+Create a pull request when done. 
 
 <!-- RestfulApiModel -->
 ```typescript

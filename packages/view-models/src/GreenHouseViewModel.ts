@@ -1,7 +1,8 @@
 import { RestfulApiViewModel } from "mvvm-core";
-import { GreenHouseModel } from "@repo/models";
+// import { GreenHouseModel } from "@repo/models";
+import { GreenHouseModel } from "../../models/src/GreenHouseModel";
 
-import { GreenhouseListData, GreenhouseListSchema } from "@repo/models";
+import { type GreenhouseListData, GreenhouseListSchema } from "../../models";
 
 export class GreenHouseViewModel extends RestfulApiViewModel<
   GreenhouseListData,
@@ -9,5 +10,10 @@ export class GreenHouseViewModel extends RestfulApiViewModel<
 > {
   constructor(model: GreenHouseModel) {
     super(model);
+
+    this.model = model;
   }
 }
+
+const greenHouseModel = new GreenHouseModel();
+export const greenHouseViewModel = new GreenHouseViewModel(greenHouseModel);
