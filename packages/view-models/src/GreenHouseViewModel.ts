@@ -9,12 +9,12 @@ export class GreenHouseViewModel extends RestfulApiViewModel<
   GreenhouseListData,
   typeof GreenhouseListSchema
 > {
-  public readonly greenHouses$: Observable<GreenhouseListData[] | null>;
+  public readonly greenHouses$: Observable<GreenhouseListData | null>;
 
   constructor(model: GreenHouseModel) {
     super(model);
     this.model = model;
-    this.greenHouses$ = this.data$ as Observable<GreenhouseListData[] | null>;
+    this.greenHouses$ = this.data$ as Observable<GreenhouseListData | null>;
   }
 }
 

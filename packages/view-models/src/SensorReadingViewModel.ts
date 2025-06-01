@@ -7,14 +7,11 @@ export class SensorReadingViewModel extends RestfulApiViewModel<
   SensorReadingListData,
   typeof SensorReadingListSchema
 > {
-  public readonly sensorReadings$: Observable<
-    SensorReadingListData[] | null
-  >;
+  public readonly sensorReadings$: Observable<SensorReadingListData | null>;
   constructor(model: SensorReadingModel) {
     super(model);
-    this.sensorReadings$ = this.data$ as Observable<
-      SensorReadingListData[] | null
-    >;
+    this.sensorReadings$ = this
+      .data$ as Observable<SensorReadingListData | null>;
   }
 }
 
