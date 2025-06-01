@@ -2,17 +2,22 @@ import { RestfulApiModel } from "mvvm-core";
 import { CreateSensorSchema } from "./schemas";
 import { nativeFetcher } from "./utils/fetcher";
 import { z } from "zod";
-import { SensorDTO } from "./schemas";
+import { SensorListSchema, SensorListData } from "./schemas";
+import { API_BASE_URL } from "./config";
+
+const CONFIG = {
+  baseUrl: API_BASE_URL,
+  endpoint: "api/sensors",
+  fetcher: nativeFetcher,
+  schema: z.array(CreateSensorSchema),
+  initialData: [] as SensorListData,
+};
+
 export class SensorModel extends RestfulApiModel<
-  SensorDTO[],
-  z.infer<typeof CreateSensorSchema>
+  SensorListData,
+  typeof SensorListSchema
 > {
   constructor() {
-    super(
-      "api/sensors",
-      "api/sensors",
-      nativeFetcher,
-      z.array(CreateSensorSchema)
-    );
+    super(CONFIG);
   }
 }

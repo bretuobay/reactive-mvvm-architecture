@@ -20,8 +20,8 @@ interface ApiRegistry {
     delete: (id: number) => ApiEndpoint;
     history: (id: number, range?: string) => ApiEndpoint;
   };
-  // is this correct?
   reading: {
+    list: ApiEndpoint;
     create: ApiEndpoint;
   };
   alert: {
@@ -55,6 +55,7 @@ export const apiRegistry: ApiRegistry = {
   },
 
   reading: {
+    list: { method: "GET", path: "/api/readings" },
     create: { method: "POST", path: "/api/readings" },
   },
 
