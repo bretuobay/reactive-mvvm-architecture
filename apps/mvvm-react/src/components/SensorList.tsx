@@ -16,8 +16,8 @@ export function SensorList() {
       {sensors && sensors.length > 0 ? (
         <ul>
           {sensors.map((sensor) => (
-            <li key={sensor.id}>
-              {sensor.name} (ID: {sensor.id})
+            <li key={sensor.greenhouseId}>
+              {sensor.type} (Status: {sensor.status})
             </li>
           ))}
         </ul>

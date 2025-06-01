@@ -16,9 +16,10 @@ export function SensorReadingList() {
       {readingList && readingList.length > 0 ? (
         <ul>
           {readingList.map((reading) => (
-            <li key={reading.id}>
-              Reading ID: {reading.id}, Sensor ID: {reading.sensorId}, Timestamp:{" "}
-              {new Date(reading.timestamp).toLocaleString()}, Value: {reading.value}
+            <li key={reading.sensorId}>
+              Reading ID: {reading.sensorId}, Sensor ID: {reading.sensorId},
+              Timestamp: {new Date(reading.timestamp).toLocaleString()}, Value:{" "}
+              {reading.value}
             </li>
           ))}
         </ul>

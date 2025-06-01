@@ -17,8 +17,8 @@ export function ThresholdAlertList() {
         <ul>
           {thresholds.map((alert) => (
             <li key={alert.id}>
-              Alert ID: {alert.id}, Sensor ID: {alert.sensorId}, Message:{" "}
-              {alert.message}, Timestamp: {new Date(alert.timestamp).toLocaleString()}
+              Alert ID: {alert.id}, Sensor ID: {alert.sensorType}, Message: Max:{" "}
+              {alert.maxValue}, Min: {alert.minValue}
             </li>
           ))}
         </ul>
