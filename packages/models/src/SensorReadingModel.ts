@@ -1,7 +1,7 @@
 import { RestfulApiModel } from "mvvm-core";
 import {
   SensorReadingListSchema,
-  SensorReadingListData,
+  type SensorReadingListData,
 } from "./schemas/sensor-reading.schema";
 import { nativeFetcher } from "./utils/fetcher";
 

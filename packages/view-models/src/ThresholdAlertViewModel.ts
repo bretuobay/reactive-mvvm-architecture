@@ -1,6 +1,6 @@
 import { RestfulApiViewModel } from "mvvm-core";
-import { ThresholdAlertModel } from "@repo/models";
-import { ThresholdAlertListData, ThresholdAlertListSchema } from "@repo/models";
+import { ThresholdAlertModel } from "../../models";
+import { ThresholdAlertListData, ThresholdAlertListSchema } from "../../models";
 
 export class ThresholdAlertViewModel extends RestfulApiViewModel<
   ThresholdAlertListData,

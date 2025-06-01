@@ -1,7 +1,7 @@
 import { RestfulApiModel } from "mvvm-core";
 import {
   ThresholdAlertListSchema,
-  ThresholdAlertListData,
+  type ThresholdAlertListData,
 } from "./schemas/alert.schema";
 import { nativeFetcher } from "./utils/fetcher";
 import { apiRegistry } from "./services/services";

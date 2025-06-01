@@ -1,7 +1,7 @@
 import { RestfulApiViewModel } from "mvvm-core";
-import { SensorModel } from "@repo/models";
+import { SensorModel } from "../../models";
 
-import { SensorListSchema, SensorListData } from "@repo/models";
+import { SensorListSchema, SensorListData } from "../../models";
 
 export class SensorViewModel extends RestfulApiViewModel<
   SensorListData,
