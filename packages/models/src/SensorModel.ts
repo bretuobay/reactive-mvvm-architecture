@@ -12,6 +12,7 @@ const CONFIG = {
   fetcher: nativeFetcher,
   schema: SensorListSchema,
   initialData: [] as SensorListData,
+  validateSchema: false,
 };
 
 export class SensorModel extends RestfulApiModel<
@@ -22,13 +23,18 @@ export class SensorModel extends RestfulApiModel<
     super(CONFIG);
   }
 
-  async fetch(id?: string | string[]): Promise<void> {
-    console.log(`[SensorModel] Fetching data with id: ${id}`);
-    try {
-      await super.fetch(id);
-      console.log('[SensorModel] Data after fetch:', this.data$.getValue());
-    } catch (error) {
-      console.error('[SensorModel] Error during fetch:', error);
-    }
-  }
+  // async fetch(id?: string | string[]): Promise<void> {
+  //   console.log(`[SensorModel] Fetching data with id: ${id}`);
+
+  //   try {
+  //     await super.fetch(id);
+  //     // console.log('[SensorModel] Data after fetch:', this.data$.getValue());
+  //     const subscription = this.data$.subscribe((data) => {
+  //       console.log("[SensorModel] Data after fetch:", data);
+  //       subscription.unsubscribe(); // Unsubscribe after first emission
+  //     });
+  //   } catch (error) {
+  //     console.error("[SensorModel] Error during fetch:", error);
+  //   }
+  // }
 }

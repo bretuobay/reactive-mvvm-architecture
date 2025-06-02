@@ -4,7 +4,6 @@ import { useObservable } from "../hooks/useObservable";
 
 export function ThresholdAlertList() {
   const thresholds = useObservable(thresholdAlertViewModel.data$, []);
-  console.log("ThresholdAlertList data updated:", thresholds);
 
   useEffect(() => {
     const fetchData = async () => {

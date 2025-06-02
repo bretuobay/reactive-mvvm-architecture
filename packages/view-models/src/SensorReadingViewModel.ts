@@ -1,7 +1,6 @@
 import { RestfulApiViewModel } from "mvvm-core";
 import { SensorReadingModel } from "../../models/src/SensorReadingModel";
 import { SensorReadingListData, SensorReadingListSchema } from "../../models";
-import { Observable } from "rxjs";
 
 export class SensorReadingViewModel extends RestfulApiViewModel<
   SensorReadingListData,

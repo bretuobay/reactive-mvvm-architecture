@@ -4,7 +4,6 @@ import { useObservable } from "../hooks/useObservable";
 
 export function SensorReadingList() {
   const readingList = useObservable(sensorReadingViewModel.data$, []);
-  console.log("SensorReadingList data updated:", readingList);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,7 +18,7 @@ export function SensorReadingList() {
       {readingList && readingList.length > 0 ? (
         <ul>
           {readingList.map((reading) => (
-            <li key={reading.sensorId}>
+            <li key={reading.id + reading.timestamp}>
               Reading ID: {reading.sensorId}, Sensor ID: {reading.sensorId},
               Timestamp: {new Date(reading.timestamp).toLocaleString()}, Value:{" "}
               {reading.value}
