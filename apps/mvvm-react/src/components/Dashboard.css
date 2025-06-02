@@ -1,0 +1,89 @@
+/* Overall Dashboard Styles */
+.dashboard-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+  background-color: #f4f7f6;
+  font-family: Arial, sans-serif;
+}
+
+/* Heading Styles */
+.dashboard-container h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.dashboard-container h2 {
+  color: #555;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  padding-bottom: 5px; /* Added for better visual separation with border */
+  border-bottom: 1px solid #eee;
+}
+
+/* Section Styles */
+.dashboard-section {
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Overview Section Specifics */
+.overview-metrics p {
+  font-size: 1.1em;
+  margin: 8px 0; /* Adjusted margin for better spacing */
+  color: #444; /* Slightly darker for better readability */
+}
+
+/* Sensor Readings Section Specifics */
+.charts-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.chart-container {
+  flex: 1 1 45%; /* Allows two charts per row, growing/shrinking */
+  min-width: 300px; /* Ensures chart is readable on smaller screens before wrapping */
+  padding: 15px; /* Increased padding */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fdfdfd; /* Slightly off-white background for chart container */
+}
+
+.chart-container h3 { /* Style for sensor type headings within chart containers */
+    text-align: center;
+    margin-bottom: 15px;
+    color: #666;
+}
+
+
+/* Alert Status Section Specifics */
+.alerts-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.alerts-list li {
+  padding: 12px 10px; /* Adjusted padding */
+  border-bottom: 1px solid #eee;
+  font-size: 0.95em; /* Slightly adjusted font size */
+  color: #333; /* Darker text for alerts */
+}
+
+.alerts-list li:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.alerts-list li:last-child {
+  border-bottom: none; /* Remove border from the last item */
+}
+
+.no-alerts-message {
+  font-style: italic;
+  color: #777;
+  padding: 10px 0; /* Added padding */
+}
