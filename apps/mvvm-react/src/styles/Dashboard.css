@@ -50,3 +50,11 @@
   width: 100%; // Ensure it takes full width of the card
 }
 */
+
+.card-total-text {
+  font-size: 1.2em; /* Larger size for emphasis */
+  color: #000000;   /* Black color for the total text */
+  font-weight: bold; /* Make the total count stand out more */
+  margin-top: 10px; /* Add some space above the total text */
+  margin-bottom: 5px; /* Adjust bottom margin as needed */
+}

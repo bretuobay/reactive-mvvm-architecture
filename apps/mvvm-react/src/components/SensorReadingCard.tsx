@@ -97,7 +97,7 @@ const SensorReadingCard: React.FC<SensorReadingCardProps> = ({ sensorReadings })
       <div style={{ position: 'relative', height: '300px', width: '100%' }}> {/* Wrapper for sizing */}
         <canvas id="sensorReadingsChart"></canvas>
       </div>
-      <p>Total Readings: {sensorReadings.length}</p>
+      <p className="card-total-text">Total Readings: {sensorReadings.length}</p>
     </div>
   );
 };
