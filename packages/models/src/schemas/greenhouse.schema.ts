@@ -6,6 +6,8 @@ export const CreateGreenhouseSchema = z.object({
   location: z.string().min(1),
   size: z.string().min(1),
   cropType: z.string().optional(),
+  createdAt: z.string().datetime().optional(),
+  updatedAt: z.string().datetime().optional(),
 });
 
 export type GreenhouseData = z.infer<typeof CreateGreenhouseSchema>;

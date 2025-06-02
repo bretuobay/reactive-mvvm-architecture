@@ -3,8 +3,7 @@ import { thresholdAlertViewModel } from "@repo/view-models/ThresholdAlertViewMod
 import { useObservable } from "../hooks/useObservable";
 
 export function ThresholdAlertList() {
-  const thresholds = useObservable(thresholdAlertViewModel.thresholdAlerts$, []);
-  console.log("ThresholdAlertList data updated:", thresholds);
+  const thresholds = useObservable(thresholdAlertViewModel.data$, []);
 
   useEffect(() => {
     const fetchData = async () => {

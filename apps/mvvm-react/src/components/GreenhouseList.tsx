@@ -3,12 +3,16 @@ import { greenHouseViewModel } from "@repo/view-models/GreenHouseViewModel";
 import { useObservable } from "../hooks/useObservable";
 
 export function GreenhouseList() {
-  const greenHouses = useObservable(greenHouseViewModel.greenHouses$, []);
-  console.log("GreenHouse data updated:", greenHouses);
+  const greenHouses = useObservable(greenHouseViewModel.data$, []);
+  console.log("Greenhouses data updated:", greenHouses);
 
   useEffect(() => {
     const fetchData = async () => {
-      await greenHouseViewModel.fetchCommand.execute();
+      try {
+        await greenHouseViewModel.fetchCommand.execute();
+      } catch (error) {
+        console.error("Error fetching greenhouses:", error);
+      }
     };
     fetchData();
   }, []);

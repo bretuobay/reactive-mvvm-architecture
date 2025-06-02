@@ -7,11 +7,9 @@ export class ThresholdAlertViewModel extends RestfulApiViewModel<
   ThresholdAlertListData,
   typeof ThresholdAlertListSchema
 > {
-  public readonly thresholdAlerts$: Observable<ThresholdAlertListData | null>;
   constructor(model: ThresholdAlertModel) {
     super(model);
-    this.thresholdAlerts$ = this
-      .data$ as Observable<ThresholdAlertListData | null>;
+    this.model = model;
   }
 }
 

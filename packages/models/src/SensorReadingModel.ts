@@ -15,6 +15,7 @@ const CONFIG = {
   fetcher: nativeFetcher,
   schema: SensorReadingListSchema,
   initialData: [] as SensorReadingListData,
+  validateSchema: false,
 };
 
 export class SensorReadingModel extends RestfulApiModel<
@@ -24,4 +25,18 @@ export class SensorReadingModel extends RestfulApiModel<
   constructor() {
     super(CONFIG);
   }
+
+  // async fetch(id?: string | string[]): Promise<void> {
+  //   console.log(`[SensorReadingModel] Fetching data with id: ${id}`);
+  //   try {
+  //     await super.fetch(id);
+  //     // console.log('[SensorReadingModel] Data after fetch:', this.data$.getValue());
+  //     const subscription = this.data$.subscribe((data) => {
+  //       console.log("[SensorReadingModel] Data after fetch:", data);
+  //       subscription.unsubscribe(); // Unsubscribe after first emission
+  //     });
+  //   } catch (error) {
+  //     console.error("[SensorReadingModel] Error during fetch:", error);
+  //   }
+  // }
 }
