@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import {
   Chart,
   LineController,
@@ -112,7 +113,9 @@ const SensorReadingCard: React.FC<SensorReadingCardProps> = ({
 
   return (
     <div className="card sensor-reading-card">
-      <h3>Sensor Readings</h3>
+      <Link to="/sensor-readings" className="card-header-link">
+        <h3>Sensor Readings</h3>
+      </Link>
       <div style={{ position: "relative", height: "300px", width: "100%" }}>
         {" "}
         {/* Wrapper for sizing */}

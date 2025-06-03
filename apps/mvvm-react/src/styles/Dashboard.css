@@ -58,3 +58,19 @@
   margin-top: 10px; /* Add some space above the total text */
   margin-bottom: 5px; /* Adjust bottom margin as needed */
 }
+
+.card-header-link {
+  color: #007bff; /* A nice blue color */
+  text-decoration: none; /* Remove underline by default */
+  cursor: pointer;
+}
+
+.card-header-link:hover {
+  text-decoration: underline; /* Underline on hover for better UX */
+}
+
+/* Ensure the h3 inside the link inherits the color */
+.card-header-link h3 {
+  color: inherit;
+  margin: 0; /* Reset any default h3 margins if necessary */
+}
