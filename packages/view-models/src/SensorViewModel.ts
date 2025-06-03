@@ -16,3 +16,4 @@ export class SensorViewModel extends RestfulApiViewModel<
 
 const sensorModel = new SensorModel();
 export const sensorViewModel = new SensorViewModel(sensorModel);
+export type { SensorListData };

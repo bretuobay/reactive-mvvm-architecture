@@ -17,3 +17,4 @@ const thresholdAlertModel = new ThresholdAlertModel();
 export const thresholdAlertViewModel = new ThresholdAlertViewModel(
   thresholdAlertModel
 );
+export type { ThresholdAlertListData };
