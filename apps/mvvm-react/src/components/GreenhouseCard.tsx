@@ -2,12 +2,6 @@ import type { GreenhouseListData } from "@repo/view-models/GreenHouseViewModel";
 import React from "react";
 import { Link } from "react-router-dom";
 
-// interface GreenHouse {
-//   id: string;
-//   name: string;
-//   // Add other relevant properties here if known, otherwise keep it simple
-// }
-
 interface GreenhouseCardProps {
   greenHouses: GreenhouseListData | null;
 }
