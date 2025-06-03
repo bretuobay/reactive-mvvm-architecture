@@ -1,79 +1,154 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/* Global styles adapted from apps/mvvm-react/src/styles/Dashboard.css and App.css */
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
+/* Basic body styling for overall page appearance */
 body {
+  font-family: Arial, sans-serif;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  background-color: #f4f7f6; /* A light neutral background */
+  color: #333;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-.card {
-  padding: 2em;
-}
-
+/* Main app container - equivalent to #root or a main app wrapper */
 #app {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
+  /* text-align: center; Remove this if not desired for the whole app */
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* Dashboard container - from React's Dashboard.css */
+.dashboard-container {
+  padding: 20px;
 }
+
+/* Grid for dashboard cards - useful for Dashboard.vue if it lays out multiple sections/cards directly */
+.dashboard-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Generic card styling - from React's Dashboard.css */
+/* This will apply to GreenhouseCard, SensorCard, etc. if they have class="card" */
+.card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease-in-out;
+  margin-bottom: 16px; /* Added for spacing between cards in a list */
+}
+
+.card:hover {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+/* Card headings (h3, h4, h5) */
+.card h3, .card h4, .card h5 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 1.25em; /* Default, can be overridden by more specific styles */
+}
+
+/* Specific for SensorReadingCard chart - from React's Dashboard.css */
+/* vue-chartjs typically creates a div around the canvas.
+   The Line component itself might be the direct container or have one.
+   Let's assume the canvas is directly within the .card or a simple div.
+*/
+.sensor-reading-card canvas { /* Targeting canvas within SensorReadingCard */
+  max-width: 100%;
+  height: 300px !important; /* Chart.js might need !important for height sometimes */
+}
+/* Alternatively, if vue-chartjs creates a specific structure:
+.sensor-reading-card .chart-container { (or whatever class vue-chartjs uses)
+  height: 300px;
+  position: relative;
+  width: 100%;
+}
+*/
+
+/* Text for totals or important numbers in cards - from React's Dashboard.css */
+.card-total-text {
+  font-size: 1.2em;
+  color: #000000;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+/* Card header link styling (already implemented in individual .vue components' <style scoped>) */
+/* These are global fallbacks if scoped styles are missed or for non-scoped links */
+.card-header-link {
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.card-header-link:hover {
+  text-decoration: underline;
+}
+
+.card-header-link h3,
+.card-header-link h4,
+.card-header-link h5 {
+  color: inherit; /* Make the heading inside link inherit the blue color */
+  margin: 0; /* Reset margin for heading within link */
+}
+
+/* Styling for lists (GreenhouseList, SensorList, etc.) */
+.list-container {
+  padding: 10px;
+  margin-bottom: 20px;
+  /* border: 1px solid #eee; */ /* Optional border for list sections */
+  /* border-radius: 8px; */
+}
+
+.list-container h2, .list-container h3, .list-container h4 { /* Headings for lists */
+    margin-bottom: 15px;
+    color: #2c3e50; /* A slightly different color for list titles */
+}
+
+
+/* Threshold Alert Card specific styling */
+.card.alert-active { /* Style for active alerts, if ThresholdAlertCard.vue uses this class */
+  border-left: 5px solid red !important; /* More prominent than default scoped style */
+  background-color: #fff5f5 !important;
+}
+
+.alert-active .card-header-link h5 { /* Make header of active alert more prominent */
+    color: #c00 !important;
+}
+
+/* Detail links within cards */
+.details-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #0056b3; /* Darker blue for details links */
+  text-decoration: none;
+}
+
+.details-link:hover {
+  text-decoration: underline;
+}
+
+/* General application heading (e.g., in Dashboard.vue) */
+h1 {
+  text-align: center;
+  color: #34495e; /* A strong, professional color for main titles */
+  margin-bottom: 24px;
+}
+
+/* Styling for sections within Dashboard.vue */
+.dashboard-section {
+  margin-bottom: 24px;
+  padding: 16px;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  background-color: #fff; /* Ensure sections have a white background */
+}
+</style>
