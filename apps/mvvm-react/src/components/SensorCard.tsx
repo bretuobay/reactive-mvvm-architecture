@@ -1,17 +1,12 @@
-import React from 'react';
-
-interface Sensor {
-  id: string;
-  name: string;
-  type: string; // Added type as it's often relevant for sensors
-  // Add other relevant properties here if known
-}
+import type { SensorListData } from "@repo/view-models/SensorViewModel";
+import React from "react";
 
 interface SensorCardProps {
-  sensors: Sensor[];
+  sensors: SensorListData | null;
 }
 
 const SensorCard: React.FC<SensorCardProps> = ({ sensors }) => {
+  if (!sensors) return null;
   return (
     <div className="card sensor-card">
       <h3>Sensors</h3>

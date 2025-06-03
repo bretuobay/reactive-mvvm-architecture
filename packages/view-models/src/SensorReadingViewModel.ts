@@ -16,3 +16,5 @@ const sensorReadingModel = new SensorReadingModel();
 export const sensorReadingViewModel = new SensorReadingViewModel(
   sensorReadingModel
 );
+
+export type { SensorReadingListData };

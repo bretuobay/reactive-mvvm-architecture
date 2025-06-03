@@ -1,18 +1,13 @@
-import React from 'react';
-
-interface ThresholdAlert {
-  id: string;
-  message: string;
-  sensorId?: string; // Optional: to link alert to a sensor
-  timestamp?: string; // Optional: when the alert was triggered
-  // Add other relevant properties here if known
-}
+import type { ThresholdAlertListData } from "@repo/view-models/ThresholdAlertViewModel";
+import React from "react";
 
 interface ThresholdAlertCardProps {
-  thresholdAlerts: ThresholdAlert[];
+  thresholdAlerts: ThresholdAlertListData;
 }
 
-const ThresholdAlertCard: React.FC<ThresholdAlertCardProps> = ({ thresholdAlerts }) => {
+const ThresholdAlertCard: React.FC<ThresholdAlertCardProps> = ({
+  thresholdAlerts,
+}) => {
   return (
     <div className="card threshold-alert-card">
       <h3>Alerts</h3>
