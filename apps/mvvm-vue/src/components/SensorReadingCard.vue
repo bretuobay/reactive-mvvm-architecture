@@ -1,24 +1,27 @@
 <template>
-  <div class="card">
-    <router-link :to="`/sensors/${props.viewModel.greenhouseId}`" class="card-header-link">
-      <h5>Sensor Readings ({{ props.viewModel.sensorId }})</h5>
+  <div class="card sensor-reading-card">
+    <!-- Align link with React component -->
+    <router-link to="/sensor-readings" class="card-header-link">
+      <h5>Sensor Readings</h5>
     </router-link>
     <div v-if="readings && readings.length > 0">
       <Line :data="chartData" :options="chartOptions" />
+      <p class="card-total-text">Total Readings: {{ readings.length }}</p>
     </div>
-    <div v-else-if="isLoadingReadings">
+    <div v-else-if="isLoadingReadings"> <!-- isLoadingReadings is a placeholder ref -->
       <p>Loading readings...</p>
     </div>
     <div v-else>
-      <p>No readings available or loading...</p>
+      <p>No readings available.</p> <!-- Simplified message -->
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { defineProps, computed, ref, watch } from 'vue';
-import { SensorReadingViewModel, SensorReading } from '@repo/view-models';
-import { useObservable } from '../hooks/useObservable';
+import type { SensorReadingListData } from "@repo/view-models/SensorReadingViewModel";
+// SensorReading type might be useful if it's defined and exported by view-models
+// For now, assuming structure like { timestamp: any, value: any } within SensorReadingListData
 import { Line } from 'vue-chartjs';
 import {
   Chart as ChartJS,
@@ -42,28 +45,29 @@ ChartJS.register(
 );
 
 const props = defineProps<{
-  viewModel: SensorReadingViewModel;
+  sensorReadingsProp: SensorReadingListData | null; // Allow null to match React's possible undefined data state
 }>();
 
-const readings = useObservable(props.viewModel.readings$);
-// Assuming SensorReadingViewModel has an isLoading$ observable
-const isLoadingReadings = useObservable(props.viewModel.isLoading$);
-
+const readings = computed(() => props.sensorReadingsProp || []); // Default to empty array if null
+const isLoadingReadings = ref(false); // Placeholder, React version doesn't show individual loading for this card's data
 
 const chartData = computed(() => {
   if (!readings.value || readings.value.length === 0) {
     return { labels: [], datasets: [] };
   }
+  // Assuming SensorReadingListData is Array<{ timestamp: string | number; value: number; ... }>
+  type ReadingItem = typeof readings.value[0]; // Infer item type if possible, else use 'any'
+
   return {
-    labels: readings.value.map((r: SensorReading) => new Date(r.timestamp).toLocaleTimeString()),
+    labels: readings.value.map((r: ReadingItem) => new Date(r.timestamp).toLocaleTimeString()),
     datasets: [
       {
-        label: `Readings for Sensor ${props.viewModel.sensorId}`,
-        backgroundColor: '#f87979',
-        borderColor: '#f87979',
-        data: readings.value.map((r: SensorReading) => r.value),
+        label: `Sensor Readings`,
+        backgroundColor: '#f87979', // Or use colors from React version: 'rgb(75, 192, 192)'
+        borderColor: '#f87979',   // Or use colors from React version
+        data: readings.value.map((r: ReadingItem) => r.value),
         fill: false,
-        tension: 0.1, // Add a bit of smoothing to the line
+        tension: 0.1,
       },
     ],
   };
@@ -73,35 +77,25 @@ const chartOptions = ref({
   responsive: true,
   maintainAspectRatio: false,
   scales: {
-    y: {
-      beginAtZero: false, // Auto-scale based on data often better for sensor readings
+    x: { // Match React chart options
+      title: { display: true, text: "Time" },
+      ticks: { autoSkip: true, maxTicksLimit: 10 },
     },
-    x: {
-      ticks: {
-        autoSkip: true,
-        maxTicksLimit: 10, // Limit number of x-axis labels for readability
-      },
+    y: { // Match React chart options
+      title: { display: true, text: "Value" },
+      beginAtZero: false,
     },
   },
   plugins: {
-    legend: {
-      display: true,
-    },
-    tooltip: {
-      enabled: true,
-    }
+    legend: { display: true },
+    tooltip: { enabled: true }
   }
 });
 
-// If the view model instance itself changes, we need to re-subscribe
-// This is generally handled if SensorReadingList creates a new VM instance
-watch(() => props.viewModel, (newViewModel) => {
-  // useObservable handles unsubscription from the old observable and subscription to the new one
-  // if the observable reference itself changes.
-  // If `readings$` and `isLoading$` are stable properties on the VM that internally switch,
-  // then direct useObservable is fine. If the VM instance is replaced,
-  // the component's props update should trigger reactivity correctly.
-}, { immediate: true });
+watch(() => props.sensorReadingsProp, (newReadings) => {
+  // vue-chartjs Line component should reactively update when :data changes.
+  // Additional logic can be added here if needed when prop changes.
+}, { immediate: true, deep: true });
 
 </script>
 
@@ -114,11 +108,21 @@ watch(() => props.viewModel, (newViewModel) => {
   background-color: #fafafa;
 }
 .card-header-link h5 {
-  color: #007bff; /* Bluish color */
+  color: #007bff;
   text-decoration: none;
   margin-bottom: 8px;
 }
 .card-header-link:hover h5 {
   text-decoration: underline;
+}
+.card-total-text { /* Style for total readings text */
+  font-size: 1em; /* Adjust as needed */
+  color: #333;
+  margin-top: 10px;
+  text-align: center;
+}
+.sensor-reading-card canvas {
+  max-width: 100%;
+  height: 300px !important;
 }
 </style>

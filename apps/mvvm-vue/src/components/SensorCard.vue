@@ -1,32 +1,28 @@
 <template>
-  <div class="card">
-    <div v-if="sensorData">
-      <router-link :to="`/sensor-readings/${sensorData.greenhouseId}/${sensorData.id}`" class="card-header-link">
-        <h4>Sensor: {{ sensorData.name }} ({{ sensorData.type }})</h4>
-      </router-link>
-      <p>ID: {{ sensorData.id }}</p>
-      <p>Greenhouse ID: {{ sensorData.greenhouseId }}</p>
-      <!-- Link to view all sensors for this greenhouse -->
-      <router-link :to="`/sensors/${sensorData.greenhouseId}`" class="details-link">
-        View all sensors in this greenhouse
-      </router-link>
-    </div>
-    <div v-else>
-      <p>Loading sensor data...</p>
-    </div>
+  <div class="card sensor-card">
+    <router-link to="/sensors" class="card-header-link"> <!-- Assuming a general /sensors route exists -->
+      <h3>Sensors</h3>
+    </router-link>
+    <p v-if="sensorListDataProp" class="card-total-text">
+      Total: {{ sensorListDataProp.length }}
+    </p>
+    <p v-else class="card-total-text">
+      Total: 0
+    </p>
+    <!-- Original content for displaying single sensor details is removed -->
   </div>
 </template>
 
 <script setup lang="ts">
 import { defineProps } from 'vue';
-import { SensorViewModel } from '@repo/view-models';
-import { useObservable } from '../hooks/useObservable';
+// Import matches the React component
+import type { SensorListData } from "@repo/view-models/SensorViewModel";
 
 const props = defineProps<{
-  viewModel: SensorViewModel;
+  sensorListDataProp: SensorListData | null;
 }>();
 
-const sensorData = useObservable(props.viewModel.data$);
+// No ViewModel instance logic, simple display component.
 </script>
 
 <style scoped>
@@ -37,18 +33,31 @@ const sensorData = useObservable(props.viewModel.data$);
   border-radius: 6px;
   background-color: #f9f9f9;
 }
-.card-header-link h4 {
-  color: #007bff; /* Bluish color */
+.card-header-link h4, /* Changed from h4 to h3 to match React, or keep h3 in template */
+.card-header-link h3 {
+  color: #007bff;
   text-decoration: none;
   margin-bottom: 6px;
 }
+.card-header-link:hover h3,
 .card-header-link:hover h4 {
   text-decoration: underline;
 }
-.details-link {
+.details-link { /* This was from the old Vue card, might not be relevant now */
   display: inline-block;
   margin-top: 6px;
   font-size: 0.85em;
   color: #0056b3;
+}
+/* Added from React's Dashboard.css for consistency */
+.card-total-text {
+  font-size: 1.2em;
+  color: #000000;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.sensor-card { /* Specific class if needed */
+  /* any specific styles for sensor card */
 }
 </style>

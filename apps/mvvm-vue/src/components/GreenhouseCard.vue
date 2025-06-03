@@ -1,41 +1,36 @@
 <template>
-  <div class="card">
-    <div v-if="greenhouseData">
-      <router-link :to="`/sensors/${greenhouseData.id}`" class="card-header-link">
-        <h3>{{ greenhouseData.name }}</h3>
-      </router-link>
-      <p>Location: {{ greenhouseData.location }}</p>
-      <p>Description: {{ greenhouseData.description }}</p>
-      <!-- Link to view all greenhouses (list) - if not already on that list -->
-      <router-link to="/greenhouses" class="details-link">View all greenhouses</router-link>
-    </div>
-    <div v-else>
-      <p>Loading greenhouse data...</p>
-    </div>
+  <div class="card greenhouse-card">
+    <router-link to="/greenhouses" class="card-header-link">
+      <h3>Greenhouses</h3>
+    </router-link>
+    <!-- Display total count if greenhouseListDataProp is an array -->
+    <p v-if="greenhouseListDataProp" class="card-total-text">
+      Total: {{ greenhouseListDataProp.length }}
+    </p>
+    <p v-else class="card-total-text">
+      Total: 0
+    </p>
+    <!-- Original content for displaying single greenhouse details is removed to match React's GreenhouseCard -->
   </div>
 </template>
 
 <script setup lang="ts">
 import { defineProps } from 'vue';
-import { GreenhouseViewModel } from '@repo/view-models';
-import { useObservable } from '../hooks/useObservable';
-// import { useRouter } from 'vue-router'; // Not strictly needed if using <router-link>
+// Import matches the React component for @repo/view-models
+import type { GreenhouseListData } from "@repo/view-models/GreenHouseViewModel";
 
 const props = defineProps<{
-  viewModel: GreenhouseViewModel;
+  // Prop name matches the one introduced in the previous subtask, type is GreenhouseListData
+  greenhouseListDataProp: GreenhouseListData | null;
 }>();
 
-const greenhouseData = useObservable(props.viewModel.data$);
-// const router = useRouter(); // For programmatic navigation if needed
-
-// const navigateToSensors = () => {
-//   if (greenhouseData.value) {
-//     router.push(`/sensors/${greenhouseData.value.id}`);
-//   }
-// };
+// No specific ViewModel instance logic here, as it's mirroring the React component's structure,
+// which is a simple display component for the provided data.
+// The 'greenhouseData' const from previous step is no longer needed as data is used directly from prop.
 </script>
 
 <style scoped>
+/* Styles can be kept or adjusted. Copied from previous state. */
 .card {
   border: 1px solid #ccc;
   padding: 16px;
@@ -43,17 +38,28 @@ const greenhouseData = useObservable(props.viewModel.data$);
   border-radius: 8px;
 }
 .card-header-link h3 {
-  color: #007bff; /* Bluish color */
+  color: #007bff;
   text-decoration: none;
   margin-bottom: 8px;
 }
 .card-header-link:hover h3 {
   text-decoration: underline;
 }
-.details-link {
+.details-link { /* This was from the old Vue card, might not be relevant now */
   display: inline-block;
   margin-top: 8px;
   font-size: 0.9em;
   color: #0056b3;
+}
+/* Added from React's Dashboard.css for consistency */
+.card-total-text {
+  font-size: 1.2em;
+  color: #000000;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.greenhouse-card { /* Specific class if needed */
+  /* any specific styles for greenhouse card */
 }
 </style>

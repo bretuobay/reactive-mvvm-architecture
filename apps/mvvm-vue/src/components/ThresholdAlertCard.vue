@@ -1,41 +1,29 @@
 <template>
-  <div class="card" :class="{ 'alert-active': alertData?.isActive }">
-    <div v-if="alertData">
-      <router-link
-        :to="`/sensor-readings/${alertData.greenhouseId}/${alertData.sensorId}`"
-        class="card-header-link"
-        title="View sensor readings for this alert"
-      >
-        <h5>Threshold Alert: {{ alertData.sensorName }} (Sensor ID: {{ alertData.sensorId }})</h5>
-      </router-link>
-      <p>Threshold: {{ alertData.thresholdValue }} {{ alertData.unit }} ({{ alertData.thresholdType }})</p>
-      <p>Current Value: {{ alertData.currentValue }} {{ alertData.unit }}</p>
-      <p>Severity: {{ alertData.severity }}</p>
-      <p>Active: {{ alertData.isActive ? 'Yes' : 'No' }}</p>
-      <p v-if="alertData.triggeredAt">Triggered At: {{ new Date(alertData.triggeredAt).toLocaleString() }}</p>
-      <p v-if="!alertData.isActive && alertData.resolvedAt">
-        Resolved At: {{ new Date(alertData.resolvedAt).toLocaleString() }}
-      </p>
-      <!-- Link to view all active alerts -->
-      <router-link to="/threshold-alerts" class="details-link">View all active alerts</router-link>
-    </div>
-    <div v-else>
-      <p>Loading alert data...</p>
-    </div>
+  <div class="card threshold-alert-card">
+    <router-link to="/threshold-alerts" class="card-header-link">
+      <h3>Alerts</h3> <!-- Changed from h5 to h3 to match React -->
+    </router-link>
+    <p v-if="thresholdAlertsProp" class="card-total-text">
+      Total Alerts: {{ thresholdAlertsProp.length }}
+    </p>
+    <p v-else class="card-total-text">
+      Total Alerts: 0
+    </p>
+    <!-- Original content for displaying single alert details is removed -->
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
-import { ThresholdAlertViewModel, ThresholdAlertWithSensorData } from '@repo/view-models';
-import { useObservable } from '../hooks/useObservable';
+import { defineProps } from 'vue'; // Removed 'computed' as it's not used
+// Import matches the React component
+import type { ThresholdAlertListData } from "@repo/view-models/ThresholdAlertViewModel";
 
 const props = defineProps<{
-  viewModel: ThresholdAlertViewModel;
+  thresholdAlertsProp: ThresholdAlertListData | null; // Allow null
 }>();
 
-// data$ on ThresholdAlertViewModel is expected to emit ThresholdAlertWithSensorData
-const alertData = useObservable(props.viewModel.data$ as import('rxjs').Observable<ThresholdAlertWithSensorData | undefined>);
+// No ViewModel instance or complex logic, simple display component.
+// The 'alertData' computed property from previous step is removed.
 </script>
 
 <style scoped>
@@ -46,25 +34,34 @@ const alertData = useObservable(props.viewModel.data$ as import('rxjs').Observab
   border-radius: 6px;
   background-color: #fefefe;
 }
-.alert-active {
+.alert-active { /* This class might not be used anymore if card only shows total */
   border-left: 5px solid red;
   background-color: #fff0f0;
 }
-.card-header-link h5 {
-  color: #007bff; /* Bluish color for active link */
+.card-header-link h3 { /* Changed from h5 */
+  color: #007bff;
   text-decoration: none;
   margin-bottom: 6px;
 }
-.alert-active .card-header-link h5 {
-  color: #c00; /* More prominent color for active alerts */
-}
-.card-header-link:hover h5 {
+/* .alert-active .card-header-link h5, removed as h5 changed to h3 and active state might be irrelevant */
+.card-header-link:hover h3 { /* Changed from h5 */
   text-decoration: underline;
 }
-.details-link {
+.details-link { /* This was from the old Vue card, might not be relevant now */
   display: inline-block;
   margin-top: 6px;
   font-size: 0.85em;
   color: #0056b3;
+}
+/* Added from React's Dashboard.css for consistency */
+.card-total-text {
+  font-size: 1.2em;
+  color: #000000;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.threshold-alert-card { /* Specific class if needed */
+  /* any specific styles for threshold alert card */
 }
 </style>
