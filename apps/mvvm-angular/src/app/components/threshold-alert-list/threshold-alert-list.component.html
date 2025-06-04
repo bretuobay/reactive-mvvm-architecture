@@ -1,0 +1,15 @@
+<div class="list-container">
+  <h2>Threshold Alert List</h2>
+  <ul class="item-list">
+    <li *ngFor="let alert of alerts" class="item-card">
+      <h3>Alert ID: {{ alert.id }}</h3>
+      <p><strong>Sensor ID:</strong> {{ alert.sensorId }}</p>
+      <p><strong>Type:</strong> {{ alert.type }}</p>
+      <p><strong>Severity:</strong> <span [ngClass]="getSeverityClass(alert.severity)">{{ alert.severity }}</span></p>
+      <p><strong>Value:</strong> {{ alert.value }} (Threshold: {{ alert.threshold }})</p>
+      <p><strong>Timestamp:</strong> {{ alert.timestamp | date:'medium' }}</p>
+      <p><strong>Acknowledged:</strong> {{ alert.acknowledged ? 'Yes' : 'No' }}</p>
+    </li>
+  </ul>
+  <p *ngIf="alerts.length === 0">No threshold alerts to display.</p>
+</div>

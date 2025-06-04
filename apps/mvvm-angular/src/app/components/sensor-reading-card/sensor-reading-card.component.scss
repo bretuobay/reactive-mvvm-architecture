@@ -1,0 +1,21 @@
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-header a {
+  text-decoration: none;
+  color: #007bff; /* Bluish color */
+  font-weight: bold;
+}
+
+.card-header a:hover {
+  text-decoration: underline;
+}
+
+.card-body {
+  margin-top: 10px;
+}

@@ -1,0 +1,46 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common'; // Includes NgFor, NgClass, DatePipe
+import { thresholdAlertViewModel, ThresholdAlertListData } from '@repo/view-models/src/ThresholdAlertViewModel';
+import { Observable } from 'rxjs';
+
+@Component({
+  selector: 'app-threshold-alert-list',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './threshold-alert-list.component.html',
+  styleUrl: './threshold-alert-list.component.scss'
+})
+export class ThresholdAlertListComponent {
+  public vm = thresholdAlertViewModel;
+  public data$: Observable<ThresholdAlertListData | null>;
+  public loading$: Observable<boolean>;
+  public error$: Observable<any>;
+
+  constructor() {
+    this.data$ = this.vm.data$;
+    this.loading$ = this.vm.loading$;
+    this.error$ = this.vm.error$;
+
+    if (typeof (this.vm as any).fetch === 'function') {
+      (this.vm as any).fetch();
+    } else if (typeof (this.vm as any).load === 'function') {
+      (this.vm as any).load();
+    }
+  }
+
+  getSeverityClass(severity: string | undefined): string {
+    if (!severity) return '';
+    switch (severity.toLowerCase()) {
+      case 'critical':
+        return 'severity-critical';
+      case 'high':
+        return 'severity-high';
+      case 'medium':
+        return 'severity-medium'; // Assuming 'medium' is a possible severity
+      case 'low':
+        return 'severity-low';
+      default:
+        return '';
+    }
+  }
+}

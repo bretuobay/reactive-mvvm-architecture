@@ -1,0 +1,35 @@
+.card {
+  border: 1px solid #e0e0e0; /* Slightly softer border */
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0; /* Adjusted margin for consistency in a grid */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Softer shadow */
+  background-color: #fff; /* Explicit white background */
+}
+
+.card-header { /* Style the header div itself if needed */
+  margin-bottom: 10px;
+}
+
+.card-header a {
+  text-decoration: none;
+  color: #007bff; /* Global link color */
+  font-weight: bold;
+  font-size: 1.25rem; /* Slightly larger header text */
+  cursor: pointer; /* Ensure pointer cursor */
+  transition: color 0.2s ease-in-out;
+}
+
+.card-header a:hover {
+  color: #0056b3; /* Darker shade on hover */
+  text-decoration: underline;
+}
+
+.card-body {
+  font-size: 0.95rem;
+  color: #555; /* Slightly darker body text for readability */
+}
+
+.card-body p {
+  margin-bottom: 0.5rem;
+}
