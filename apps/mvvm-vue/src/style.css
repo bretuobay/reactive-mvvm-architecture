@@ -5,8 +5,10 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f7f6; /* A light neutral background */
+  background-color: #f4f7f6;
+  /* A light neutral background */
   color: #333;
+  background-color: #000000;
 }
 
 /* Main app container - equivalent to #root or a main app wrapper */
@@ -20,6 +22,12 @@ body {
 /* Dashboard container - from React's Dashboard.css */
 .dashboard-container {
   padding: 20px;
+  font-family: Arial, sans-serif;
+  /* Added a basic font for better appearance */
+  /* width: 600px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Grid for dashboard cards - useful for Dashboard.vue if it lays out multiple sections/cards directly */
@@ -36,21 +44,25 @@ body {
   border-radius: 8px;
   padding: 15px;
   background-color: #ffffff;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.3s ease-in-out;
-  margin-bottom: 16px; /* Added for spacing between cards in a list */
+  margin-bottom: 16px;
+  /* Added for spacing between cards in a list */
 }
 
 .card:hover {
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Card headings (h3, h4, h5) */
-.card h3, .card h4, .card h5 {
+.card h3,
+.card h4,
+.card h5 {
   margin-top: 0;
   margin-bottom: 10px;
   color: #333;
-  font-size: 1.25em; /* Default, can be overridden by more specific styles */
+  font-size: 1.25em;
+  /* Default, can be overridden by more specific styles */
 }
 
 /* Specific for SensorReadingCard chart - from React's Dashboard.css */
@@ -58,10 +70,13 @@ body {
    The Line component itself might be the direct container or have one.
    Let's assume the canvas is directly within the .card or a simple div.
 */
-.sensor-reading-card canvas { /* Targeting canvas within SensorReadingCard */
+.sensor-reading-card canvas {
+  /* Targeting canvas within SensorReadingCard */
   max-width: 100%;
-  height: 300px !important; /* Chart.js might need !important for height sometimes */
+  height: 300px !important;
+  /* Chart.js might need !important for height sometimes */
 }
+
 /* Alternatively, if vue-chartjs creates a specific structure:
 .sensor-reading-card .chart-container { (or whatever class vue-chartjs uses)
   height: 300px;
@@ -94,32 +109,42 @@ body {
 .card-header-link h3,
 .card-header-link h4,
 .card-header-link h5 {
-  color: inherit; /* Make the heading inside link inherit the blue color */
-  margin: 0; /* Reset margin for heading within link */
+  color: inherit;
+  /* Make the heading inside link inherit the blue color */
+  margin: 0;
+  /* Reset margin for heading within link */
 }
 
 /* Styling for lists (GreenhouseList, SensorList, etc.) */
 .list-container {
   padding: 10px;
   margin-bottom: 20px;
-  /* border: 1px solid #eee; */ /* Optional border for list sections */
+  /* border: 1px solid #eee; */
+  /* Optional border for list sections */
   /* border-radius: 8px; */
 }
 
-.list-container h2, .list-container h3, .list-container h4 { /* Headings for lists */
-    margin-bottom: 15px;
-    color: #2c3e50; /* A slightly different color for list titles */
+.list-container h2,
+.list-container h3,
+.list-container h4 {
+  /* Headings for lists */
+  margin-bottom: 15px;
+  color: #2c3e50;
+  /* A slightly different color for list titles */
 }
 
 
 /* Threshold Alert Card specific styling */
-.card.alert-active { /* Style for active alerts, if ThresholdAlertCard.vue uses this class */
-  border-left: 5px solid red !important; /* More prominent than default scoped style */
+.card.alert-active {
+  /* Style for active alerts, if ThresholdAlertCard.vue uses this class */
+  border-left: 5px solid red !important;
+  /* More prominent than default scoped style */
   background-color: #fff5f5 !important;
 }
 
-.alert-active .card-header-link h5 { /* Make header of active alert more prominent */
-    color: #c00 !important;
+.alert-active .card-header-link h5 {
+  /* Make header of active alert more prominent */
+  color: #c00 !important;
 }
 
 /* Detail links within cards */
@@ -127,7 +152,8 @@ body {
   display: inline-block;
   margin-top: 10px;
   font-size: 0.9em;
-  color: #0056b3; /* Darker blue for details links */
+  color: #0056b3;
+  /* Darker blue for details links */
   text-decoration: none;
 }
 
@@ -138,7 +164,8 @@ body {
 /* General application heading (e.g., in Dashboard.vue) */
 h1 {
   text-align: center;
-  color: #34495e; /* A strong, professional color for main titles */
+  color: #34495e;
+  /* A strong, professional color for main titles */
   margin-bottom: 24px;
 }
 
@@ -148,7 +175,9 @@ h1 {
   padding: 16px;
   border: 1px solid #eaeaea;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  background-color: #fff; /* Ensure sections have a white background */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  /* Ensure sections have a white background */
 }
-</style>
+
+</style >

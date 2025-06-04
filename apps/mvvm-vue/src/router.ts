@@ -1,42 +1,33 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import Dashboard from './components/Dashboard.vue';
-import GreenhouseList from './components/GreenhouseList.vue';
-import SensorList from './components/SensorList.vue';
-import SensorReadingList from './components/SensorReadingList.vue';
-import ThresholdAlertList from './components/ThresholdAlertList.vue';
+import { createRouter, createWebHistory } from "vue-router";
 
-const routes: Array<RouteRecordRaw> = [
+const routes: Array<any> = [
   {
-    path: '/',
-    name: 'Dashboard',
-    component: Dashboard,
+    path: "/",
+    name: "Dashboard",
+    component: import("./components/Dashboard.vue"), // Lazy-loaded component
   },
   {
-    path: '/greenhouses',
-    name: 'GreenhouseList',
-    component: GreenhouseList,
+    path: "/greenhouses",
+    name: "GreenhouseList",
+    component: import("./components/GreenhouseList.vue"),
   },
   {
-    // Expects greenhouseId as a route parameter
-    path: '/sensors/:greenhouseId',
-    name: 'SensorList',
-    component: SensorList,
-    props: true, // Pass route.params to component as props
+    path: "/sensors",
+    name: "SensorList",
+    component: import("./components/SensorList.vue"),
+    props: true,
   },
   {
-    // Expects greenhouseId and sensorId as route parameters
-    path: '/sensor-readings/:greenhouseId/:sensorId',
-    name: 'SensorReadingList',
-    component: SensorReadingList,
-    props: true, // Pass route.params to component as props
+    path: "/sensor-readings",
+    name: "SensorReadingList",
+    component: import("./components/SensorReadingList.vue"),
+    props: true,
   },
   {
-    path: '/threshold-alerts',
-    name: 'ThresholdAlertList',
-    component: ThresholdAlertList,
+    path: "/threshold-alerts",
+    name: "ThresholdAlertList",
+    component: import("./components/ThresholdAlertList.vue"),
   },
-  // TODO: Add a route for individual greenhouse details, e.g., /greenhouse/:id
-  // TODO: Add a route for individual sensor details, e.g., /sensor/:id (if different from readings)
 ];
 
 const router = createRouter({

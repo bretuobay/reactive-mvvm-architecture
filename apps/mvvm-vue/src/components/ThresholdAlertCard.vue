@@ -1,29 +1,22 @@
 <template>
   <div class="card threshold-alert-card">
     <router-link to="/threshold-alerts" class="card-header-link">
-      <h3>Alerts</h3> <!-- Changed from h5 to h3 to match React -->
+      <h3>Alerts</h3>
     </router-link>
     <p v-if="thresholdAlertsProp" class="card-total-text">
       Total Alerts: {{ thresholdAlertsProp.length }}
     </p>
-    <p v-else class="card-total-text">
-      Total Alerts: 0
-    </p>
-    <!-- Original content for displaying single alert details is removed -->
+    <p v-else class="card-total-text">Total Alerts: 0</p>
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'; // Removed 'computed' as it's not used
-// Import matches the React component
+import { defineProps } from "vue";
 import type { ThresholdAlertListData } from "@repo/view-models/ThresholdAlertViewModel";
 
-const props = defineProps<{
-  thresholdAlertsProp: ThresholdAlertListData | null; // Allow null
+defineProps<{
+  thresholdAlertsProp?: ThresholdAlertListData | null;
 }>();
-
-// No ViewModel instance or complex logic, simple display component.
-// The 'alertData' computed property from previous step is removed.
 </script>
 
 <style scoped>
@@ -34,20 +27,24 @@ const props = defineProps<{
   border-radius: 6px;
   background-color: #fefefe;
 }
-.alert-active { /* This class might not be used anymore if card only shows total */
+.alert-active {
+  /* This class might not be used anymore if card only shows total */
   border-left: 5px solid red;
   background-color: #fff0f0;
 }
-.card-header-link h3 { /* Changed from h5 */
+.card-header-link h3 {
+  /* Changed from h5 */
   color: #007bff;
   text-decoration: none;
   margin-bottom: 6px;
 }
 /* .alert-active .card-header-link h5, removed as h5 changed to h3 and active state might be irrelevant */
-.card-header-link:hover h3 { /* Changed from h5 */
+.card-header-link:hover h3 {
+  /* Changed from h5 */
   text-decoration: underline;
 }
-.details-link { /* This was from the old Vue card, might not be relevant now */
+.details-link {
+  /* This was from the old Vue card, might not be relevant now */
   display: inline-block;
   margin-top: 6px;
   font-size: 0.85em;
@@ -61,7 +58,8 @@ const props = defineProps<{
   margin-top: 10px;
   margin-bottom: 5px;
 }
-.threshold-alert-card { /* Specific class if needed */
+.threshold-alert-card {
+  /* Specific class if needed */
   /* any specific styles for threshold alert card */
 }
 </style>

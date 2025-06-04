@@ -1,28 +1,23 @@
 <template>
   <div class="card sensor-card">
-    <router-link to="/sensors" class="card-header-link"> <!-- Assuming a general /sensors route exists -->
+    <router-link to="/sensors" class="card-header-link">
+      <!-- Assuming a general /sensors route exists -->
       <h3>Sensors</h3>
     </router-link>
     <p v-if="sensorListDataProp" class="card-total-text">
       Total: {{ sensorListDataProp.length }}
     </p>
-    <p v-else class="card-total-text">
-      Total: 0
-    </p>
+    <p v-else class="card-total-text">Total: 0</p>
     <!-- Original content for displaying single sensor details is removed -->
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
-// Import matches the React component
+import { defineProps } from "vue";
 import type { SensorListData } from "@repo/view-models/SensorViewModel";
-
-const props = defineProps<{
-  sensorListDataProp: SensorListData | null;
+defineProps<{
+  sensorListDataProp?: SensorListData | null;
 }>();
-
-// No ViewModel instance logic, simple display component.
 </script>
 
 <style scoped>
@@ -43,7 +38,8 @@ const props = defineProps<{
 .card-header-link:hover h4 {
   text-decoration: underline;
 }
-.details-link { /* This was from the old Vue card, might not be relevant now */
+.details-link {
+  /* This was from the old Vue card, might not be relevant now */
   display: inline-block;
   margin-top: 6px;
   font-size: 0.85em;
@@ -57,7 +53,8 @@ const props = defineProps<{
   margin-top: 10px;
   margin-bottom: 5px;
 }
-.sensor-card { /* Specific class if needed */
+.sensor-card {
+  /* Specific class if needed */
   /* any specific styles for sensor card */
 }
 </style>
