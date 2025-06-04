@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { thresholdAlertViewModel, ThresholdAlertListData } from '@repo/view-models/src/ThresholdAlertViewModel';
+import {
+  thresholdAlertViewModel,
+  ThresholdAlertListData,
+} from '@repo/view-models/ThresholdAlertViewModel';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -9,7 +12,7 @@ import { Observable } from 'rxjs';
   standalone: true,
   imports: [RouterModule, CommonModule],
   templateUrl: './threshold-alert-card.component.html',
-  styleUrl: './threshold-alert-card.component.scss'
+  styleUrl: './threshold-alert-card.component.scss',
 })
 export class ThresholdAlertCardComponent {
   public vm = thresholdAlertViewModel;
@@ -19,13 +22,9 @@ export class ThresholdAlertCardComponent {
 
   constructor() {
     this.data$ = this.vm.data$;
-    this.loading$ = this.vm.loading$;
+    this.loading$ = this.vm.isLoading$;
     this.error$ = this.vm.error$;
 
-    if (typeof (this.vm as any).fetch === 'function') {
-      (this.vm as any).fetch();
-    } else if (typeof (this.vm as any).load === 'function') {
-      (this.vm as any).load();
-    }
+    this.vm.fetchCommand.execute();
   }
 }

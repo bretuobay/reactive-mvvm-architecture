@@ -1,12 +1,17 @@
 <div class="list-container">
   <h2>Sensor List</h2>
-  <ul class="item-list">
+  <ul class="item-list" *ngIf="data$ | async as sensors">
     <li *ngFor="let sensor of sensors" class="item-card">
-      <h3>{{ sensor.name }} ({{ sensor.id }})</h3>
+      <h3>{{ sensor?.greenhouse?.name }} ({{ sensor.id }})</h3>
       <p><strong>Type:</strong> {{ sensor.type }}</p>
       <p><strong>Greenhouse:</strong> {{ sensor.greenhouse }}</p>
-      <p><strong>Status:</strong> <span [ngClass]="getStatusClass(sensor.status)">{{ sensor.status }}</span></p>
+      <p>
+        <strong>Status:</strong>
+        <span [ngClass]="getStatusClass(sensor.status)">{{
+          sensor.status
+        }}</span>
+      </p>
     </li>
   </ul>
-  <p *ngIf="sensors.length === 0">No sensors to display.</p>
+  <p *ngIf="loading$ | async">Loading.....</p>
 </div>

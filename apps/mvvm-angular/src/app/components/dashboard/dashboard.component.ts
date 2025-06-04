@@ -11,11 +11,9 @@ import { ThresholdAlertCardComponent } from '../threshold-alert-card/threshold-a
     GreenhouseCardComponent,
     SensorCardComponent,
     SensorReadingCardComponent,
-    ThresholdAlertCardComponent
+    ThresholdAlertCardComponent,
   ],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  styleUrl: './dashboard.component.scss',
 })
-export class DashboardComponent {
-
-}
+export class DashboardComponent {}

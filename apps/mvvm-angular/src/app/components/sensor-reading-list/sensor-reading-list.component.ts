@@ -1,6 +1,9 @@
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Includes NgFor, DatePipe, NgIf, AsyncPipe
-import { sensorReadingViewModel, SensorReadingListData } from '@repo/view-models/src/SensorReadingViewModel';
+import {
+  sensorReadingViewModel,
+  SensorReadingListData,
+} from '@repo/view-models/SensorReadingViewModel';
 import { Observable } from 'rxjs';
 import { Chart } from 'chart.js/auto';
 
@@ -9,7 +12,7 @@ import { Chart } from 'chart.js/auto';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './sensor-reading-list.component.html',
-  styleUrl: './sensor-reading-list.component.scss'
+  styleUrl: './sensor-reading-list.component.scss',
 })
 export class SensorReadingListComponent implements AfterViewInit {
   public vm = sensorReadingViewModel;
@@ -17,23 +20,20 @@ export class SensorReadingListComponent implements AfterViewInit {
   public loading$: Observable<boolean>;
   public error$: Observable<any>;
 
-  @ViewChild('readingsListChart') readingsListChartRef?: ElementRef<HTMLCanvasElement>;
+  @ViewChild('readingsListChart')
+  readingsListChartRef?: ElementRef<HTMLCanvasElement>;
   private chartInstance?: Chart;
 
   constructor() {
     this.data$ = this.vm.data$;
-    this.loading$ = this.vm.loading$;
+    this.loading$ = this.vm.isLoading$;
     this.error$ = this.vm.error$;
 
-    if (typeof (this.vm as any).fetch === 'function') {
-      (this.vm as any).fetch();
-    } else if (typeof (this.vm as any).load === 'function') {
-      (this.vm as any).load();
-    }
+    this.vm.fetchCommand.execute();
   }
 
   ngAfterViewInit(): void {
-    this.data$.subscribe(data => {
+    this.data$.subscribe((data) => {
       if (data && data.length > 0 && this.readingsListChartRef) {
         this.initChart(data);
       }
@@ -56,27 +56,32 @@ export class SensorReadingListComponent implements AfterViewInit {
 
     // Example: Display all reading values for a specific sensor type (e.g., Temperature)
     // This is a simplified example; you might want to filter or aggregate data
-    const temperatureReadings = data.filter(r => r.type === 'Temperature');
+    // const temperatureReadings = data.filter((r) => r.type === 'Temperature');
+    const temperatureReadings = data;
 
     this.chartInstance = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: temperatureReadings.map(r => new Date(r.timestamp).toLocaleTimeString()),
-        datasets: [{
-          label: 'Temperature Readings',
-          data: temperatureReadings.map(r => r.value),
-          borderColor: 'rgba(255, 99, 132, 1)',
-          tension: 0.1
-        }]
+        labels: temperatureReadings.map((r) =>
+          new Date(r.timestamp).toLocaleTimeString(),
+        ),
+        datasets: [
+          {
+            label: 'Temperature Readings',
+            data: temperatureReadings.map((r) => r.value),
+            borderColor: 'rgba(255, 99, 132, 1)',
+            tension: 0.1,
+          },
+        ],
       },
       options: {
         responsive: true,
         maintainAspectRatio: false, // Allow chart to fill container
         scales: {
-          x: { title: { display: true, text: 'Time' }},
-          y: { title: { display: true, text: 'Value' }}
-        }
-      }
+          x: { title: { display: true, text: 'Time' } },
+          y: { title: { display: true, text: 'Value' } },
+        },
+      },
     });
   }
 }

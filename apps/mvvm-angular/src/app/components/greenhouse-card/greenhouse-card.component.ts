@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common'; // For async pipe, ngIf
-import { greenHouseViewModel, GreenhouseListData } from '@repo/view-models/src/GreenHouseViewModel'; // Adjusted import path
+import {
+  greenHouseViewModel,
+  GreenhouseListData,
+} from '@repo/view-models/GreenHouseViewModel'; // Adjusted import path
 import { Observable } from 'rxjs';
 
 @Component({
@@ -9,7 +12,7 @@ import { Observable } from 'rxjs';
   standalone: true,
   imports: [RouterModule, CommonModule], // Added CommonModule
   templateUrl: './greenhouse-card.component.html',
-  styleUrl: './greenhouse-card.component.scss'
+  styleUrl: './greenhouse-card.component.scss',
 })
 export class GreenhouseCardComponent {
   // Expose the view model instance directly to the template
@@ -22,7 +25,7 @@ export class GreenhouseCardComponent {
 
   constructor() {
     this.data$ = this.vm.data$;
-    this.loading$ = this.vm.loading$;
+    this.loading$ = this.vm.isLoading$;
     this.error$ = this.vm.error$;
 
     // Initial data fetch if not done automatically by view model
@@ -30,10 +33,10 @@ export class GreenhouseCardComponent {
     // If GreenHouseViewModel's constructor or init logic fetches data, this might not be needed.
     // For now, let's assume we might need to call a method like `load()` or `fetch()`.
     // This is a common pattern. If the VM fetches on init, this call can be removed.
-    if (typeof (this.vm as any).fetch === 'function') {
-      (this.vm as any).fetch();
-    } else if (typeof (this.vm as any).load === 'function') {
-      (this.vm as any).load();
-    }
+    // if (typeof (this.vm as any).fetchCommand === 'function') {
+    (this.vm as any).fetchCommand.execute();
+    // } else if (typeof (this.vm as any).load === 'function') {
+    // (this.vm as any).fetchCommand.execute();
+    // }
   }
 }

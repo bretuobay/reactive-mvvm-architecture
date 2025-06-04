@@ -1,15 +1,21 @@
 <div class="list-container">
   <h2>Threshold Alert List</h2>
-  <ul class="item-list">
+
+  <!-- Loading State -->
+  <p *ngIf="loading$ | async">Loading threshold alerts...</p>
+
+  <!-- Error State -->
+  <p *ngIf="error$ | async as error" class="error">
+    Error loading alerts: {{ error?.message || error }}
+  </p>
+
+  <!-- Data List -->
+  <ul class="item-list" *ngIf="data$ | async as alerts">
     <li *ngFor="let alert of alerts" class="item-card">
       <h3>Alert ID: {{ alert.id }}</h3>
-      <p><strong>Sensor ID:</strong> {{ alert.sensorId }}</p>
-      <p><strong>Type:</strong> {{ alert.type }}</p>
-      <p><strong>Severity:</strong> <span [ngClass]="getSeverityClass(alert.severity)">{{ alert.severity }}</span></p>
-      <p><strong>Value:</strong> {{ alert.value }} (Threshold: {{ alert.threshold }})</p>
-      <p><strong>Timestamp:</strong> {{ alert.timestamp | date:'medium' }}</p>
-      <p><strong>Acknowledged:</strong> {{ alert.acknowledged ? 'Yes' : 'No' }}</p>
+      <p><strong>Sensor ID:</strong> {{ alert.greenhouseId }}</p>
+      <p><strong>Type:</strong> {{ alert.sensorType }}</p>
     </li>
+    <li *ngIf="alerts.length === 0">No threshold alerts to display.</li>
   </ul>
-  <p *ngIf="alerts.length === 0">No threshold alerts to display.</p>
 </div>

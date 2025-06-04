@@ -1,12 +1,11 @@
 <div class="list-container">
   <h2>Greenhouse List</h2>
-  <ul class="item-list">
+  <ul class="item-list" *ngIf="data$ | async as greenhouses">
     <li *ngFor="let greenhouse of greenhouses" class="item-card">
       <h3>{{ greenhouse.name }}</h3>
       <p><strong>Location:</strong> {{ greenhouse.location }}</p>
-      <p><strong>Sensors:</strong> {{ greenhouse.sensorCount }}</p>
-      <p><strong>Alerts:</strong> {{ greenhouse.alertCount }}</p>
+      <p><strong>Sensors:</strong> {{ greenhouse.size }}</p>
     </li>
   </ul>
-  <p *ngIf="greenhouses.length === 0">No greenhouses to display.</p>
+  <p *ngIf="loading$ | async">Loading greenhouses...</p>
 </div>

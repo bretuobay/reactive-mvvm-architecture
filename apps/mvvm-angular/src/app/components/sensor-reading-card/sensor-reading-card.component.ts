@@ -1,7 +1,10 @@
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { sensorReadingViewModel, SensorReadingListData } from '@repo/view-models/src/SensorReadingViewModel';
+import {
+  sensorReadingViewModel,
+  SensorReadingListData,
+} from '@repo/view-models/SensorReadingViewModel';
 import { Observable } from 'rxjs';
 import { Chart } from 'chart.js/auto';
 
@@ -10,7 +13,7 @@ import { Chart } from 'chart.js/auto';
   standalone: true,
   imports: [RouterModule, CommonModule],
   templateUrl: './sensor-reading-card.component.html',
-  styleUrl: './sensor-reading-card.component.scss'
+  styleUrl: './sensor-reading-card.component.scss',
 })
 export class SensorReadingCardComponent implements AfterViewInit {
   public vm = sensorReadingViewModel;
@@ -23,18 +26,14 @@ export class SensorReadingCardComponent implements AfterViewInit {
 
   constructor() {
     this.data$ = this.vm.data$;
-    this.loading$ = this.vm.loading$;
+    this.loading$ = this.vm.isLoading$;
     this.error$ = this.vm.error$;
 
-    if (typeof (this.vm as any).fetch === 'function') {
-      (this.vm as any).fetch();
-    } else if (typeof (this.vm as any).load === 'function') {
-      (this.vm as any).load();
-    }
+    this.vm.fetchCommand.execute();
   }
 
   ngAfterViewInit(): void {
-    this.data$.subscribe(data => {
+    this.data$.subscribe((data) => {
       if (data && data.length > 0 && this.readingsChartRef) {
         this.initChart(data);
       }
@@ -60,18 +59,22 @@ export class SensorReadingCardComponent implements AfterViewInit {
     this.chartInstance = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: latestReadings.map(r => new Date(r.timestamp).toLocaleTimeString()),
-        datasets: [{
-          label: 'Latest Readings',
-          data: latestReadings.map(r => r.value),
-          borderColor: 'rgba(75, 192, 192, 1)',
-          tension: 0.1
-        }]
+        labels: latestReadings.map((r) =>
+          new Date(r.timestamp).toLocaleTimeString(),
+        ),
+        datasets: [
+          {
+            label: 'Latest Readings',
+            data: latestReadings.map((r) => r.value),
+            borderColor: 'rgba(75, 192, 192, 1)',
+            tension: 0.1,
+          },
+        ],
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false
-      }
+        maintainAspectRatio: false,
+      },
     });
   }
 }

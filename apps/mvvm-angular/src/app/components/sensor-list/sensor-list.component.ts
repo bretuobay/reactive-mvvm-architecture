@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Replaced NgFor, NgClass
-import { sensorViewModel, SensorListData } from '@repo/view-models/src/SensorViewModel';
+import {
+  sensorViewModel,
+  SensorListData,
+} from '@repo/view-models/SensorViewModel';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -8,7 +11,7 @@ import { Observable } from 'rxjs';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './sensor-list.component.html',
-  styleUrl: './sensor-list.component.scss'
+  styleUrl: './sensor-list.component.scss',
 })
 export class SensorListComponent {
   public vm = sensorViewModel;
@@ -18,14 +21,10 @@ export class SensorListComponent {
 
   constructor() {
     this.data$ = this.vm.data$;
-    this.loading$ = this.vm.loading$;
+    this.loading$ = this.vm.isLoading$;
     this.error$ = this.vm.error$;
 
-    if (typeof (this.vm as any).fetch === 'function') {
-      (this.vm as any).fetch();
-    } else if (typeof (this.vm as any).load === 'function') {
-      (this.vm as any).load();
-    }
+    this.vm.fetchCommand.execute();
   }
 
   // Keep getStatusClass or adapt if status is directly on sensor items

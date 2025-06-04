@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { sensorViewModel, SensorListData } from '@repo/view-models/src/SensorViewModel';
+import {
+  sensorViewModel,
+  SensorListData,
+} from '@repo/view-models/SensorViewModel';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -9,7 +12,7 @@ import { Observable } from 'rxjs';
   standalone: true,
   imports: [RouterModule, CommonModule],
   templateUrl: './sensor-card.component.html',
-  styleUrl: './sensor-card.component.scss'
+  styleUrl: './sensor-card.component.scss',
 })
 export class SensorCardComponent {
   public vm = sensorViewModel;
@@ -19,13 +22,9 @@ export class SensorCardComponent {
 
   constructor() {
     this.data$ = this.vm.data$;
-    this.loading$ = this.vm.loading$;
+    this.loading$ = this.vm.isLoading$;
     this.error$ = this.vm.error$;
 
-    if (typeof (this.vm as any).fetch === 'function') {
-      (this.vm as any).fetch();
-    } else if (typeof (this.vm as any).load === 'function') {
-      (this.vm as any).load();
-    }
+    this.vm.fetchCommand.execute();
   }
 }
