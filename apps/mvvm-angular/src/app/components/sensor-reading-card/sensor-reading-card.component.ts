@@ -54,18 +54,14 @@ export class SensorReadingCardComponent implements AfterViewInit {
       this.chartInstance.destroy(); // Destroy previous chart instance
     }
 
-    // Example: Displaying the last 5 reading values
-    const latestReadings = data.slice(-5);
     this.chartInstance = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: latestReadings.map((r) =>
-          new Date(r.timestamp).toLocaleTimeString(),
-        ),
+        labels: data.map((r) => new Date(r.timestamp).toLocaleTimeString()),
         datasets: [
           {
             label: 'Latest Readings',
-            data: latestReadings.map((r) => r.value),
+            data: data.map((r) => r.value),
             borderColor: 'rgba(75, 192, 192, 1)',
             tension: 0.1,
           },

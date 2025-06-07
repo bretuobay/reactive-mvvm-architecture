@@ -1,9 +1,20 @@
 <div class="dashboard-container">
   <h1>Dashboard</h1>
-  <div class="cards-grid">
-    <app-greenhouse-card></app-greenhouse-card>
-    <app-sensor-card></app-sensor-card>
-    <app-threshold-alert-card></app-threshold-alert-card>
-    <app-sensor-reading-card></app-sensor-reading-card>
+  <div class="flex-container">
+    <div class="flex-item">
+      <app-greenhouse-card></app-greenhouse-card>
+    </div>
+
+    <div class="flex-item">
+      <app-sensor-card></app-sensor-card>
+    </div>
+
+    <div class="flex-item">
+      <app-threshold-alert-card></app-threshold-alert-card>
+    </div>
+
+    <div class="flex-item">
+      <app-sensor-reading-card></app-sensor-reading-card>
+    </div>
   </div>
 </div>
