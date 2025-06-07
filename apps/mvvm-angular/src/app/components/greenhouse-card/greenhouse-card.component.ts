@@ -10,7 +10,7 @@ import { BackIconComponent } from '../back-icon/back-icon.component';
 @Component({
   selector: 'app-greenhouse-card',
   standalone: true,
-  imports: [RouterModule, CommonModule, BackIconComponent], // Added CommonModule
+  imports: [RouterModule, CommonModule], // Added CommonModule
   templateUrl: './greenhouse-card.component.html',
   styleUrl: './greenhouse-card.component.scss',
 })
