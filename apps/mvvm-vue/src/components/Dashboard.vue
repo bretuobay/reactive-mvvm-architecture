@@ -1,16 +1,24 @@
 <template>
   <div class="dashboard-container">
-    <h1>Dashboard</h1>
+    <h2>Dashboard</h2>
 
     <div v-if="isLoading" class="loading-message">
       <p>Loading dashboard data...</p>
     </div>
 
-    <div v-if="!isLoading" class="dashboard-cards-grid">
-      <GreenhouseCard :greenhouseListDataProp="greenHouses" />
-      <SensorCard :sensorListDataProp="sensors" />
-      <ThresholdAlertCard :thresholdAlertsProp="thresholdAlerts" />
-      <SensorReadingCard :sensorReadingsProp="sensorReadings" />
+    <div v-if="!isLoading" class="flex-container">
+      <div className="flex-item">
+        <GreenhouseCard :greenhouseListDataProp="greenHouses" />
+      </div>
+      <div className="flex-item">
+        <SensorCard :sensorListDataProp="sensors" />
+      </div>
+      <div className="flex-item">
+        <ThresholdAlertCard :thresholdAlertsProp="thresholdAlerts" />
+      </div>
+      <div className="flex-item">
+        <SensorReadingCard :sensorReadingsProp="sensorReadings" />
+      </div>
     </div>
   </div>
 </template>
@@ -70,26 +78,4 @@ onMounted(async () => {
 });
 </script>
 
-<style scoped>
-.dashboard-container {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-}
-.loading-message {
-  text-align: center;
-  padding: 20px;
-  font-size: 1.2em;
-}
-
-.dashboard-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-h1 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 24px;
-}
-</style>
+<style scoped></style>

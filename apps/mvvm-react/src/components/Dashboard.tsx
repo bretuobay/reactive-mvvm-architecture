@@ -4,7 +4,6 @@ import { sensorViewModel } from "@repo/view-models/SensorViewModel";
 import { sensorReadingViewModel } from "@repo/view-models/SensorReadingViewModel";
 import { thresholdAlertViewModel } from "@repo/view-models/ThresholdAlertViewModel";
 import { useObservable } from "../hooks/useObservable";
-import "../styles/Dashboard.css"; // Import the CSS file
 
 import GreenhouseCard from "./GreenhouseCard";
 import SensorCard from "./SensorCard";
@@ -61,11 +60,19 @@ const Dashboard: React.FC = () => {
       {!isLoading && (
         <>
           <h2>Dashboard</h2>
-          <div className="dashboard-cards-grid">
-            <GreenhouseCard greenHouses={greenHouses} />
-            <SensorCard sensors={sensors} />
-            <ThresholdAlertCard thresholdAlerts={thresholdAlerts ?? []} />
-            <SensorReadingCard sensorReadings={sensorReadings ?? []} />
+          <div className="flex-container">
+            <div className="flex-item">
+              <GreenhouseCard greenHouses={greenHouses} />
+            </div>
+            <div className="flex-item">
+              <SensorCard sensors={sensors} />
+            </div>
+            <div className="flex-item">
+              <ThresholdAlertCard thresholdAlerts={thresholdAlerts ?? []} />
+            </div>
+            <div className="flex-item">
+              <SensorReadingCard sensorReadings={sensorReadings ?? []} />
+            </div>
           </div>
         </>
       )}
