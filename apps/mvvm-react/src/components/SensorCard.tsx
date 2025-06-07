@@ -9,12 +9,11 @@ interface SensorCardProps {
 const SensorCard: React.FC<SensorCardProps> = ({ sensors }) => {
   if (!sensors) return null;
   return (
-    <div className="card sensor-card">
+    <div className="card">
       <Link to="/sensors" className="card-header-link">
-        <h3>Sensors</h3>
+        <h3 className="card-title">Sensors</h3>
       </Link>
-      <p className="card-total-text">Total: {sensors.length}</p>
-      {/* Additional details, like types of sensors or their statuses, can be added later */}
+      <p className="card-content">Total: {sensors.length}</p>
     </div>
   );
 };

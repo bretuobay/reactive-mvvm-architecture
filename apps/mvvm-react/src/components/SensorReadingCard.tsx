@@ -112,16 +112,14 @@ const SensorReadingCard: React.FC<SensorReadingCardProps> = ({
   }, [sensorReadings]); // Re-run effect if sensorReadings change
 
   return (
-    <div className="card sensor-reading-card">
+    <div className="card">
       <Link to="/sensor-readings" className="card-header-link">
-        <h3>Sensor Readings</h3>
+        <h3 className="card-title">Sensor Readings</h3>
       </Link>
-      <div style={{ position: "relative", height: "300px", width: "100%" }}>
-        {" "}
-        {/* Wrapper for sizing */}
+      <div className="card-content">
         <canvas id="sensorReadingsChart"></canvas>
       </div>
-      <p className="card-total-text">Total Readings: {sensorReadings.length}</p>
+      <p className="card-content">Total Readings: {sensorReadings.length}</p>
     </div>
   );
 };

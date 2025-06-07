@@ -1,14 +1,18 @@
 <template>
-  <div class="card sensor-reading-card">
+  <div class="card">
     <router-link to="/sensor-readings" class="card-header-link">
-      <h5>Sensor Readings</h5>
+      <h5 class="card-title">Sensor Readings</h5>
     </router-link>
     <div v-if="readings && readings.length > 0">
-      <Line :data="chartData" :options="chartOptions" />
-      <p class="card-total-text">Total Readings: {{ readings.length }}</p>
+      <div>
+        <Line :data="chartData" :options="chartOptions" />
+      </div>
+      <div>
+        <p class="card-content">Total Readings: {{ readings.length }}</p>
+      </div>
     </div>
     <div v-else-if="isLoadingReadings">
-      <p>Loading readings...</p>
+      <p class="card-content">Loading readings...</p>
     </div>
     <div v-else>
       <p>No readings available.</p>
@@ -96,30 +100,4 @@ watch(
 );
 </script>
 
-<style scoped>
-.card {
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 4px;
-  background-color: #fafafa;
-}
-.card-header-link h5 {
-  color: #007bff;
-  text-decoration: none;
-  margin-bottom: 8px;
-}
-.card-header-link:hover h5 {
-  text-decoration: underline;
-}
-.card-total-text {
-  font-size: 1em; /* Adjust as needed */
-  color: #333;
-  margin-top: 10px;
-  text-align: center;
-}
-.sensor-reading-card canvas {
-  max-width: 100%;
-  height: 300px !important;
-}
-</style>
+<style scoped></style>
