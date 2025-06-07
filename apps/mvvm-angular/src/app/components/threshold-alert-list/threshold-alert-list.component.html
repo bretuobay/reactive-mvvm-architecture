@@ -1,17 +1,22 @@
-<div class="list-container">
-  <h2>Threshold Alert List</h2>
+<a routerLink="/">
+  <back-icon> </back-icon>
+</a>
+<div class="card">
+  <h2 class="card-title">Threshold Alert List</h2>
 
   <!-- Loading State -->
-  <p *ngIf="loading$ | async">Loading threshold alerts...</p>
+  <p class="card-content" *ngIf="loading$ | async">
+    Loading threshold alerts...
+  </p>
 
   <!-- Error State -->
-  <p *ngIf="error$ | async as error" class="error">
+  <p class="card-content" *ngIf="error$ | async as error" class="error">
     Error loading alerts: {{ error?.message || error }}
   </p>
 
   <!-- Data List -->
-  <ul class="item-list" *ngIf="data$ | async as alerts">
-    <li *ngFor="let alert of alerts" class="item-card">
+  <ul class="card-content list" *ngIf="data$ | async as alerts">
+    <li *ngFor="let alert of alerts" class="list-item">
       <h3>Alert ID: {{ alert.id }}</h3>
       <p><strong>Sensor ID:</strong> {{ alert.greenhouseId }}</p>
       <p><strong>Type:</strong> {{ alert.sensorType }}</p>

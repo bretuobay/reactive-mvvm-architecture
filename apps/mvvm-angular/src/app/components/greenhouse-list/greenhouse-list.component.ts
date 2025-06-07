@@ -4,12 +4,16 @@ import {
   greenHouseViewModel,
   GreenhouseListData,
 } from '@repo/view-models/GreenHouseViewModel';
+
+import { BackIconComponent } from '../back-icon/back-icon.component';
+
 import { Observable } from 'rxjs';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-greenhouse-list',
   standalone: true,
-  imports: [CommonModule], // Replaced NgFor with CommonModule
+  imports: [CommonModule, BackIconComponent, RouterLink], // Replaced NgFor with CommonModule
   templateUrl: './greenhouse-list.component.html',
   styleUrl: './greenhouse-list.component.scss',
 })

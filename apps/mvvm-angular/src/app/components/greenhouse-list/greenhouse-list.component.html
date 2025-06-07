@@ -1,7 +1,10 @@
-<div class="list-container">
-  <h2>Greenhouse List</h2>
-  <ul class="item-list" *ngIf="data$ | async as greenhouses">
-    <li *ngFor="let greenhouse of greenhouses" class="item-card">
+<a routerLink="/">
+  <back-icon> </back-icon>
+</a>
+<div class="card">
+  <h2 class="card-title">Greenhouse List</h2>
+  <ul class="list" *ngIf="data$ | async as greenhouses">
+    <li *ngFor="let greenhouse of greenhouses" class="list-item">
       <h3>{{ greenhouse.name }}</h3>
       <p><strong>Location:</strong> {{ greenhouse.location }}</p>
       <p><strong>Sensors:</strong> {{ greenhouse.size }}</p>

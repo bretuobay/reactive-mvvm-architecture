@@ -1,9 +1,8 @@
 <div class="card">
-  <div class="card-header">
-    <a routerLink="/greenhouses">Greenhouses Overview</a>
+  <div class="card-title">
+    <a routerLink="/greenhouses">Greenhouses</a>
   </div>
-  <div class="card-body">
-    <p>Total Greenhouses: X</p>
-    <p>Active Alerts: Y</p>
+  <div class="card-content">
+    <p>Total: {{ (data$ | async)?.length }}</p>
   </div>
 </div>

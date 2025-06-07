@@ -1,9 +1,8 @@
 <div class="card">
-  <div class="card-header">
-    <a routerLink="/threshold-alerts">Threshold Alerts Overview</a>
+  <div class="card-title">
+    <a routerLink="/threshold-alerts"> Alerts </a>
   </div>
-  <div class="card-body">
-    <p>Active Alerts: E</p>
-    <p>Critical Alerts: F</p>
+  <div class="card-content">
+    <p>Total: {{ (data$ | async)?.length }}</p>
   </div>
 </div>

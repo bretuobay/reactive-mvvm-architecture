@@ -6,11 +6,11 @@ import {
   GreenhouseListData,
 } from '@repo/view-models/GreenHouseViewModel'; // Adjusted import path
 import { Observable } from 'rxjs';
-
+import { BackIconComponent } from '../back-icon/back-icon.component';
 @Component({
   selector: 'app-greenhouse-card',
   standalone: true,
-  imports: [RouterModule, CommonModule], // Added CommonModule
+  imports: [RouterModule, CommonModule, BackIconComponent], // Added CommonModule
   templateUrl: './greenhouse-card.component.html',
   styleUrl: './greenhouse-card.component.scss',
 })
@@ -34,7 +34,7 @@ export class GreenhouseCardComponent {
     // For now, let's assume we might need to call a method like `load()` or `fetch()`.
     // This is a common pattern. If the VM fetches on init, this call can be removed.
     // if (typeof (this.vm as any).fetchCommand === 'function') {
-    (this.vm as any).fetchCommand.execute();
+    this.vm.fetchCommand.execute();
     // } else if (typeof (this.vm as any).load === 'function') {
     // (this.vm as any).fetchCommand.execute();
     // }

@@ -6,11 +6,13 @@ import {
 } from '@repo/view-models/SensorReadingViewModel';
 import { Observable } from 'rxjs';
 import { Chart } from 'chart.js/auto';
+import { RouterLink } from '@angular/router';
+import { BackIconComponent } from '../back-icon/back-icon.component';
 
 @Component({
   selector: 'app-sensor-reading-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BackIconComponent, RouterLink],
   templateUrl: './sensor-reading-list.component.html',
   styleUrl: './sensor-reading-list.component.scss',
 })

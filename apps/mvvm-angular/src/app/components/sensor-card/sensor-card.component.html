@@ -1,9 +1,8 @@
 <div class="card">
-  <div class="card-header">
-    <a routerLink="/sensors">Sensors Overview</a>
+  <div class="card-title">
+    <a routerLink="/sensors">Sensors</a>
   </div>
-  <div class="card-body">
-    <p>Total Sensors: A</p>
-    <p>Online: B</p>
+  <div class="card-content">
+    <p>Total: {{ (data$ | async)?.length }}</p>
   </div>
 </div>

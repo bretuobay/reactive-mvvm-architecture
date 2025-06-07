@@ -5,11 +5,13 @@ import {
   SensorListData,
 } from '@repo/view-models/SensorViewModel';
 import { Observable } from 'rxjs';
+import { RouterLink } from '@angular/router';
+import { BackIconComponent } from '../back-icon/back-icon.component';
 
 @Component({
   selector: 'app-sensor-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BackIconComponent, RouterLink],
   templateUrl: './sensor-list.component.html',
   styleUrl: './sensor-list.component.scss',
 })

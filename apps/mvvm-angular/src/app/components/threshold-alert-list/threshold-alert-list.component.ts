@@ -5,11 +5,13 @@ import {
   ThresholdAlertListData,
 } from '@repo/view-models/ThresholdAlertViewModel';
 import { Observable } from 'rxjs';
+import { RouterLink } from '@angular/router';
+import { BackIconComponent } from '../back-icon/back-icon.component';
 
 @Component({
   selector: 'app-threshold-alert-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BackIconComponent, RouterLink],
   templateUrl: './threshold-alert-list.component.html',
   styleUrl: './threshold-alert-list.component.scss',
 })

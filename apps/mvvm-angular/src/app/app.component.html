@@ -1,25 +1,5 @@
-<nav class="main-nav">
-  <ul>
-    <li>
-      <a routerLink="/" routerLinkActive="active">Dashboard </a>
-    </li>
-    <li>
-      <a routerLink="/greenhouses" routerLinkActive="active">Greenhouses</a>
-    </li>
-    <li><a routerLink="/sensors" routerLinkActive="active">Sensors</a></li>
-    <li>
-      <a routerLink="/sensor-readings" routerLinkActive="active"
-        >Sensor Readings</a
-      >
-    </li>
-    <li>
-      <a routerLink="/threshold-alerts" routerLinkActive="active"
-        >Threshold Alerts</a
-      >
-    </li>
-  </ul>
-</nav>
-
-<div class="content-container">
+<app-header></app-header>
+<app-container>
   <router-outlet />
-</div>
+</app-container>
+<app-footer></app-footer>
