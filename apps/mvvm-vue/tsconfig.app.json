@@ -1,21 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@repo/models": [
-        "../../packages/models/src"
-      ],
-      "@repo/models/*": [
-        "../../packages/models/src/*"
-      ],
-      "@repo/view-models": [
-        "../../packages/view-models/src"
-      ],
-      "@repo/view-models/*": [
-        "../../packages/view-models/src/*"
-      ]
-    },
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     /* Linting */
     "strict": true,
@@ -31,12 +16,5 @@
     "src/**/*.tsx",
     "src/**/*.vue"
   ],
-  "references": [
-    {
-      "path": "../../packages/models/tsconfig.json"
-    },
-    {
-      "path": "../../packages/view-models/tsconfig.json"
-    }
-  ]
+  "references": []
 }
