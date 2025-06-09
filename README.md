@@ -18,11 +18,36 @@ This Turborepo includes the following packages/apps:
 
 - `docs`: a [Next.js](https://nextjs.org/) app
 - `web`: another [Next.js](https://nextjs.org/) app
+- `mvvm-angular`: an [Angular](https://angular.io/) app demonstrating MVVM
+- `mvvm-react`: a [React](https://react.dev/) app demonstrating MVVM
+- `mvvm-vue`: a [Vue.js](https://vuejs.org/) app demonstrating MVVM
 - `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
 - `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
 - `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+- `packages/models`: contains the data models for the applications
+- `packages/view-models`: contains the view models for the applications
 
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+
+## MVVM Architecture
+
+This project utilizes the Model-View-ViewModel (MVVM) architecture to structure its frontend applications. This architectural pattern helps in separating the user interface (View) from the business logic and data (Model) through an intermediary layer called the ViewModel.
+
+- **Model**: Represents the data and business logic of the application. In this project, the data models are located in the `packages/models` directory.
+- **View**: Represents the UI elements that the user interacts with. The `mvvm-angular`, `mvvm-react`, and `mvvm-vue` apps contain the Views for their respective frameworks.
+- **ViewModel**: Acts as a bridge between the View and the Model. It prepares data from the Model in a way that is easily consumable by the View and handles user interactions from the View. The ViewModels are located in the `packages/view-models` directory.
+
+This separation of concerns offers several benefits:
+- **Improved Code Organization**: Code is more structured and easier to understand.
+- **Enhanced Testability**: Business logic in the ViewModel can be tested independently of the UI.
+- **Better Reusability**: Models and ViewModels can potentially be shared across different Views or even different UI frameworks.
+
+This architecture is leveraged by the following applications in this monorepo:
+- `apps/mvvm-angular`
+- `apps/mvvm-react`
+- `apps/mvvm-vue`
+
+These applications demonstrate how common Models and ViewModels can be used to provide data and state management to different frontend technologies.
 
 ### Utilities
 
