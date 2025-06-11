@@ -6,7 +6,7 @@ import { API_BASE_URL } from "./config";
 
 const { path } = apiRegistry.greenhouse.list;
 
-const CONFIG = {
+export const config = {
   baseUrl: API_BASE_URL,
   endpoint: path,
   fetcher: nativeFetcher,
@@ -20,7 +20,7 @@ export class GreenHouseModel extends RestfulApiModel<
   typeof GreenhouseListSchema
 > {
   constructor() {
-    super(CONFIG);
+    super(config);
   }
 
   // Override fetch to add logging
