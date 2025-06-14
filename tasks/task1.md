@@ -1,14 +1,14 @@
-
-### Task: Building the Models and View  Models of our application
+### Task: Building the Models and View Models of our application
 
 ## Context
-You have a turbo repo managed application to illustrate mvvm architecture for web applications. 
+
+You have a turbo repo managed application to illustrate mvvm architecture for web applications.
 
 Inside apps folder you have various apps (api, mvvm-angular, mvvm-react etc)
 In this task, we care about the packages specifically, the models and view-models packages. These should use the mvvm-core package in the root package.json to create Models and View models for our domain objects GreenHouse, Sensor, SensorReadings, Alerts. Below I will give you for your reference what the base Model ( RestfulApiModel ) and the view-model (RestfulApiViewModel) from the package mvvm-core look like. The idea is that these two will have you build the model and view model for the domain for CRUD applications so that later the applications in apps can use these to easily build apps. The end goal is to illustrate that the MVVM pattern can be used for web applications and that business logic models and view logic does not have to be tightly coupled to the rendering framework ( react , vue , angular etc.)
 
-
 <!-- RestfulApiModel -->
+
 ```typescript
 import { z, ZodSchema } from "zod";
 import { BaseModel } from "./BaseModel"; // Assuming IDisposable is also needed/exported

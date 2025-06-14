@@ -8,9 +8,7 @@
       <h3>Reading ID: {{ reading.id }}</h3>
       <p><strong>Sensor ID:</strong> {{ reading.sensorId }}</p>
       <p><strong>Value:</strong> {{ reading.value }}</p>
-      <p>
-        <strong>Timestamp:</strong> {{ reading.timestamp | date: "medium" }}
-      </p>
+      <p><strong>Timestamp:</strong> {{ reading.timestamp | date: 'medium' }}</p>
     </li>
   </ul>
 </div>

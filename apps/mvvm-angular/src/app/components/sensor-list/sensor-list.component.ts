@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Replaced NgFor, NgClass
-import {
-  sensorViewModel,
-  SensorListData,
-} from '@repo/view-models/SensorViewModel';
+import { sensorViewModel, SensorListData } from '@repo/view-models/SensorViewModel';
 import { Observable } from 'rxjs';
 import { RouterLink } from '@angular/router';
 import { BackIconComponent } from '../back-icon/back-icon.component';

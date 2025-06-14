@@ -1,5 +1,5 @@
-import { z } from "zod";
-import { SensorTypeEnum } from "./sensor.schema";
+import { z } from 'zod';
+import { SensorTypeEnum } from './sensor.schema';
 
 export const CreateThresholdAlertSchema = z.object({
   id: z.string().uuid().optional(),

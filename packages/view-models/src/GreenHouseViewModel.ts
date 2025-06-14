@@ -1,14 +1,12 @@
-import { createReactiveViewModel, ViewModelFactoryConfig } from "mvvm-core";
-import { config as modelConfig } from "@repo/models";
-import { type GreenhouseListData, GreenhouseListSchema } from "@repo/models";
+import { createReactiveViewModel, type ViewModelFactoryConfig } from 'mvvm-core';
 
-type TConfig = ViewModelFactoryConfig<
-  GreenhouseListData,
-  typeof GreenhouseListSchema
->;
+import { greenHouseConfig } from '@repo/models';
+import { type GreenhouseListData, GreenhouseListSchema } from '@repo/models';
+
+type TConfig = ViewModelFactoryConfig<GreenhouseListData, typeof GreenhouseListSchema>;
 
 const config: TConfig = {
-  modelConfig,
+  modelConfig: greenHouseConfig,
   schema: GreenhouseListSchema,
 };
 

@@ -1,8 +1,8 @@
-import { RestfulApiModel } from "mvvm-core";
-import { nativeFetcher } from "./utils/fetcher";
-import { SensorListSchema, type SensorListData } from "./schemas";
-import { API_BASE_URL } from "./config";
-import { apiRegistry } from "./services/services";
+import { RestfulApiModel } from 'mvvm-core';
+import { nativeFetcher } from './utils/fetcher';
+import { SensorListSchema, type SensorListData } from './schemas';
+import { API_BASE_URL } from './config';
+import { apiRegistry } from './services/services';
 
 const { path } = apiRegistry.sensor.list; // Assuming sensor.list path exists
 
@@ -15,10 +15,7 @@ const CONFIG = {
   validateSchema: false,
 };
 
-export class SensorModel extends RestfulApiModel<
-  SensorListData,
-  typeof SensorListSchema
-> {
+export class SensorModel extends RestfulApiModel<SensorListData, typeof SensorListSchema> {
   constructor() {
     super(CONFIG);
   }

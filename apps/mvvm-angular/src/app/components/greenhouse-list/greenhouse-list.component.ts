@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // For NgFor, NgIf, AsyncPipe
-import {
-  greenHouseViewModel,
-  GreenhouseListData,
-} from '@repo/view-models/GreenHouseViewModel';
+import { greenHouseViewModel, GreenhouseListData } from '@repo/view-models/GreenHouseViewModel';
 
 import { BackIconComponent } from '../back-icon/back-icon.component';
 

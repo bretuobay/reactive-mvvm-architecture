@@ -9,9 +9,7 @@
     </div>
     <div v-else-if="greenhouses && greenhouses.length > 0">
       <ul class="card-content list">
-        <li v-for="gh in greenhouses" :key="gh.id" class="list-item">
-          {{ gh.name }} (ID: {{ gh.id }})
-        </li>
+        <li v-for="gh in greenhouses" :key="gh.id" class="list-item">{{ gh.name }} (ID: {{ gh.id }})</li>
       </ul>
     </div>
     <div v-else>
@@ -21,10 +19,10 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { greenHouseViewModel as importedGreenhouseVMInstance } from "@repo/view-models/GreenHouseViewModel";
-import { useObservable } from "../hooks/useObservable";
-import BackArrow from "../assets/back-arrow.svg";
+import { onMounted } from 'vue';
+import { greenHouseViewModel as importedGreenhouseVMInstance } from '@repo/view-models/GreenHouseViewModel';
+import { useObservable } from '../hooks/useObservable';
+import BackArrow from '../assets/back-arrow.svg';
 
 const isLoading = useObservable(importedGreenhouseVMInstance.isLoading$, true);
 const greenhouses = useObservable(importedGreenhouseVMInstance.data$, []);

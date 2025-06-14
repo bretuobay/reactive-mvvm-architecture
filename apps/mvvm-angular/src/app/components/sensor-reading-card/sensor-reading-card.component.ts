@@ -1,10 +1,7 @@
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import {
-  sensorReadingViewModel,
-  SensorReadingListData,
-} from '@repo/view-models/SensorReadingViewModel';
+import { sensorReadingViewModel, SensorReadingListData } from '@repo/view-models/SensorReadingViewModel';
 import { Observable } from 'rxjs';
 import { Chart } from 'chart.js/auto';
 

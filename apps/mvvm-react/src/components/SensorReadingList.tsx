@@ -1,8 +1,8 @@
-import { useEffect } from "react";
-import { sensorReadingViewModel } from "@repo/view-models/SensorReadingViewModel";
-import { useObservable } from "../hooks/useObservable";
-import { Link } from "react-router-dom";
-import BackArrow from "../assets/back-arrow.svg";
+import { useEffect } from 'react';
+import { sensorReadingViewModel } from '@repo/view-models/SensorReadingViewModel';
+import { useObservable } from '../hooks/useObservable';
+import { Link } from 'react-router-dom';
+import BackArrow from '../assets/back-arrow.svg';
 
 export function SensorReadingList() {
   const readingList = useObservable(sensorReadingViewModel.data$, []);
@@ -17,11 +17,7 @@ export function SensorReadingList() {
   return (
     <>
       <Link to="/" className="back-button">
-        <img
-          src={BackArrow}
-          alt="Back to dashboard"
-          style={{ width: "36px", height: "36px" }}
-        />
+        <img src={BackArrow} alt="Back to dashboard" style={{ width: '36px', height: '36px' }} />
       </Link>
       <div className="card">
         <h1 className="card-title">Sensor Readings</h1>
@@ -29,9 +25,8 @@ export function SensorReadingList() {
           <ul className="card-content list">
             {readingList.map((reading) => (
               <li key={reading.id + reading.timestamp} className="list-item">
-                Reading ID: {reading.sensorId}, Sensor ID: {reading.sensorId},
-                Timestamp: {new Date(reading.timestamp).toLocaleString()},
-                Value: {reading.value}
+                Reading ID: {reading.sensorId}, Sensor ID: {reading.sensorId}, Timestamp:{' '}
+                {new Date(reading.timestamp).toLocaleString()}, Value: {reading.value}
               </li>
             ))}
           </ul>

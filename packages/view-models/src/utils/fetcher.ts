@@ -1,6 +1,6 @@
 // src/utils/nativeFetcher.ts
 
-import { Fetcher } from "mvvm-core"; // Assuming RestfulApiModel.ts defines Fetcher type
+import { Fetcher } from 'mvvm-core'; // Assuming RestfulApiModel.ts defines Fetcher type
 
 /**
  * Custom error class for API responses that are not OK (status 2xx).
@@ -11,14 +11,9 @@ export class HttpError extends Error {
   public readonly statusText: string;
   public readonly responseBody: any; // Can be JSON object, string, or undefined
 
-  constructor(
-    message: string,
-    status: number,
-    statusText: string,
-    responseBody?: any
-  ) {
+  constructor(message: string, status: number, statusText: string, responseBody?: any) {
     super(message);
-    this.name = "HttpError"; // Set the name for easier identification
+    this.name = 'HttpError'; // Set the name for easier identification
     this.status = status;
     this.statusText = statusText;
     this.responseBody = responseBody;
@@ -48,15 +43,15 @@ export class HttpError extends Error {
 export const nativeFetcher: Fetcher = async (
   url: string,
   options?: RequestInit,
-  timeoutMs: number = 30000 // Default timeout of 30 seconds
+  timeoutMs: number = 30000, // Default timeout of 30 seconds
 ): Promise<Response> => {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), timeoutMs); // Set up the timeout
 
   // Default headers for JSON communication
   const defaultHeaders = {
-    "Content-Type": "application/json",
-    Accept: "application/json",
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
   };
 
   // Merge provided headers with defaults.
@@ -78,10 +73,10 @@ export const nativeFetcher: Fetcher = async (
     // Check if the HTTP response status is not in the 2xx range
     if (!response.ok) {
       let errorBody: any;
-      const contentType = response.headers.get("content-type");
+      const contentType = response.headers.get('content-type');
 
       // Attempt to parse the response body, prioritizing JSON
-      if (contentType && contentType.includes("application/json")) {
+      if (contentType && contentType.includes('application/json')) {
         try {
           errorBody = await response.json();
         } catch (e) {
@@ -95,10 +90,10 @@ export const nativeFetcher: Fetcher = async (
 
       // Throw a custom HttpError for easier handling upstream
       throw new HttpError(
-        `HTTP error: ${response.status} ${response.statusText || "Unknown"}`,
+        `HTTP error: ${response.status} ${response.statusText || 'Unknown'}`,
         response.status,
-        response.statusText || "Unknown",
-        errorBody
+        response.statusText || 'Unknown',
+        errorBody,
       );
     }
 
@@ -110,19 +105,15 @@ export const nativeFetcher: Fetcher = async (
     clearTimeout(timeoutId); // Ensure timeout is cleared even if fetch itself throws (e.g., network error)
 
     // Handle specific error types
-    if (error.name === "AbortError") {
+    if (error.name === 'AbortError') {
       // This error occurs if `controller.abort()` was called (due to timeout or explicit cancellation)
-      throw new Error(
-        `Request to ${url} timed out after ${timeoutMs}ms or was explicitly aborted.`
-      );
+      throw new Error(`Request to ${url} timed out after ${timeoutMs}ms or was explicitly aborted.`);
     } else if (error instanceof HttpError) {
       // Re-throw our custom HttpError, as it already contains detailed information
       throw error;
     } else {
       // Catch any other unexpected errors (e.g., network issues, DNS resolution failures)
-      throw new Error(
-        `Network or unexpected error for ${url}: ${error.message || "An unknown error occurred."}`
-      );
+      throw new Error(`Network or unexpected error for ${url}: ${error.message || 'An unknown error occurred.'}`);
     }
   }
 };

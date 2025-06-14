@@ -7,12 +7,7 @@ import { ThresholdAlertCardComponent } from '../threshold-alert-card/threshold-a
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [
-    GreenhouseCardComponent,
-    SensorCardComponent,
-    SensorReadingCardComponent,
-    ThresholdAlertCardComponent,
-  ],
+  imports: [GreenhouseCardComponent, SensorCardComponent, SensorReadingCardComponent, ThresholdAlertCardComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })

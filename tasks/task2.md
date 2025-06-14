@@ -1,8 +1,8 @@
-
-### Task: Building the Models and View  Models of our application
+### Task: Building the Models and View Models of our application
 
 ## Context
-You have a turbo repo managed application to illustrate mvvm architecture for web applications. 
+
+You have a turbo repo managed application to illustrate mvvm architecture for web applications.
 
 Inside apps folder you have various apps (api, mvvm-angular, mvvm-react etc)
 In this task, you care about mvvm-react. There are react components set up to display data inside apps/mvvm-react/src/components
@@ -16,15 +16,16 @@ These already import their view models from :
 
 @repo/view-models
 
- Below I will give you for your reference what the base Model ( RestfulApiModel ) and the view-model (RestfulApiViewModel) from the package mvvm-core look like.
+Below I will give you for your reference what the base Model ( RestfulApiModel ) and the view-model (RestfulApiViewModel) from the package mvvm-core look like.
 
- In this task we want to execute a command to fetch data for our react components and display them as a list ( all components should just list).
+In this task we want to execute a command to fetch data for our react components and display them as a list ( all components should just list).
 
- You are allowed to modify the view models and the react components to achieve this call.
+You are allowed to modify the view models and the react components to achieve this call.
 
-Create a pull request when done. 
+Create a pull request when done.
 
 <!-- RestfulApiModel -->
+
 ```typescript
 import { z, ZodSchema } from "zod";
 import { BaseModel } from "./BaseModel"; // Assuming IDisposable is also needed/exported

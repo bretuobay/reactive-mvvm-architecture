@@ -1,14 +1,12 @@
-import type { ThresholdAlertListData } from "@repo/view-models/ThresholdAlertViewModel";
-import React from "react";
-import { Link } from "react-router-dom";
+import type { ThresholdAlertListData } from '@repo/view-models/ThresholdAlertViewModel';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface ThresholdAlertCardProps {
   thresholdAlerts: ThresholdAlertListData;
 }
 
-const ThresholdAlertCard: React.FC<ThresholdAlertCardProps> = ({
-  thresholdAlerts,
-}) => {
+const ThresholdAlertCard: React.FC<ThresholdAlertCardProps> = ({ thresholdAlerts }) => {
   return (
     <div className="card">
       <Link to="/threshold-alerts" className="card-header-link">

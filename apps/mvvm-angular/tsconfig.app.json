@@ -7,19 +7,11 @@
     "types": [],
     "baseUrl": ".",
     "paths": {
-      "@repo/models": [
-        "../../packages/models/src"
-      ],
-      "@repo/models/*": [
-        "../../packages/models/src/*"
-      ],
-      "@repo/view-models": [
-        "../../packages/view-models/src"
-      ],
-      "@repo/view-models/*": [
-        "../../packages/view-models/src/*"
-      ]
-    },
+      "@repo/models": ["../../packages/models/src"],
+      "@repo/models/*": ["../../packages/models/src/*"],
+      "@repo/view-models": ["../../packages/view-models/src"],
+      "@repo/view-models/*": ["../../packages/view-models/src/*"]
+    }
   },
   "references": [
     {
@@ -29,10 +21,6 @@
       "path": "../../packages/view-models/tsconfig.json"
     }
   ],
-  "files": [
-    "src/main.ts"
-  ],
-  "include": [
-    "src/**/*.d.ts",
-  ]
+  "files": ["src/main.ts"],
+  "include": ["src/**/*.d.ts"]
 }

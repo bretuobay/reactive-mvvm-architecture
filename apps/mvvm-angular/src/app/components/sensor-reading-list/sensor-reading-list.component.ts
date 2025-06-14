@@ -1,9 +1,6 @@
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Includes NgFor, DatePipe, NgIf, AsyncPipe
-import {
-  sensorReadingViewModel,
-  SensorReadingListData,
-} from '@repo/view-models/SensorReadingViewModel';
+import { sensorReadingViewModel, SensorReadingListData } from '@repo/view-models/SensorReadingViewModel';
 import { Observable } from 'rxjs';
 import { Chart } from 'chart.js/auto';
 import { RouterLink } from '@angular/router';
@@ -64,9 +61,7 @@ export class SensorReadingListComponent implements AfterViewInit {
     this.chartInstance = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: temperatureReadings.map((r) =>
-          new Date(r.timestamp).toLocaleTimeString(),
-        ),
+        labels: temperatureReadings.map((r) => new Date(r.timestamp).toLocaleTimeString()),
         datasets: [
           {
             label: 'Temperature Readings',

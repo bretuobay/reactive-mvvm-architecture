@@ -1,13 +1,8 @@
-import { RestfulApiViewModel } from "mvvm-core";
-import { SensorModel } from "../../models/src/SensorModel";
-import { Observable } from "rxjs";
+import { RestfulApiViewModel } from 'mvvm-core';
 
-import { SensorListSchema, SensorListData } from "../../models";
+import { SensorListSchema, type SensorListData, SensorModel } from '@repo/models';
 
-export class SensorViewModel extends RestfulApiViewModel<
-  SensorListData,
-  typeof SensorListSchema
-> {
+export class SensorViewModel extends RestfulApiViewModel<SensorListData, typeof SensorListSchema> {
   constructor(model: SensorModel) {
     super(model);
     this.model = model;

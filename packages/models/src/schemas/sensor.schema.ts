@@ -1,14 +1,9 @@
-import { z } from "zod";
-import { CreateGreenhouseSchema } from "./greenhouse.schema";
+import { z } from 'zod';
+import { CreateGreenhouseSchema } from './greenhouse.schema';
 
-export const SensorTypeEnum = z.enum([
-  "temperature",
-  "humidity",
-  "soilMoisture",
-  "lightIntensity",
-]);
+export const SensorTypeEnum = z.enum(['temperature', 'humidity', 'soilMoisture', 'lightIntensity']);
 
-export const SensorStatusEnum = z.enum(["active", "inactive"]);
+export const SensorStatusEnum = z.enum(['active', 'inactive']);
 
 export const CreateSensorSchema = z.object({
   id: z.string().uuid().optional(),

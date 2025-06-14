@@ -1,10 +1,10 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const CreateSensorReadingSchema = z.object({
   id: z.string().uuid().optional(),
   sensorId: z.number().int().positive(),
   timestamp: z.string().refine((val) => !isNaN(Date.parse(val)), {
-    message: "Invalid timestamp format",
+    message: 'Invalid timestamp format',
   }),
   value: z.number(),
 });

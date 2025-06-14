@@ -1,12 +1,12 @@
-import { RestfulApiModel } from "mvvm-core";
-import { GreenhouseListSchema, type GreenhouseListData } from "./schemas";
-import { nativeFetcher } from "./utils/fetcher";
-import { apiRegistry } from "./services/services";
-import { API_BASE_URL } from "./config";
+import { RestfulApiModel } from 'mvvm-core';
+import { GreenhouseListSchema, type GreenhouseListData } from './schemas';
+import { nativeFetcher } from './utils/fetcher';
+import { apiRegistry } from './services/services';
+import { API_BASE_URL } from './config';
 
 const { path } = apiRegistry.greenhouse.list;
 
-export const config = {
+export const greenHouseConfig = {
   baseUrl: API_BASE_URL,
   endpoint: path,
   fetcher: nativeFetcher,
@@ -15,12 +15,9 @@ export const config = {
   validateSchema: false,
 };
 
-export class GreenHouseModel extends RestfulApiModel<
-  GreenhouseListData,
-  typeof GreenhouseListSchema
-> {
+export class GreenHouseModel extends RestfulApiModel<GreenhouseListData, typeof GreenhouseListSchema> {
   constructor() {
-    super(config);
+    super(greenHouseConfig);
   }
 
   // Override fetch to add logging

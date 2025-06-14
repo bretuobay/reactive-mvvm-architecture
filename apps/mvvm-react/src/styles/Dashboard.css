@@ -3,7 +3,6 @@
   font-family: Arial, sans-serif;
   /* Added a basic font for better appearance */
 
-
   width: 600px;
   display: flex;
   flex-direction: column;
@@ -27,7 +26,6 @@
   /* Softened shadow */
   transition: box-shadow 0.3s ease-in-out;
   /* Smooth transition for hover effects */
-
 
   width: 400px;
 }

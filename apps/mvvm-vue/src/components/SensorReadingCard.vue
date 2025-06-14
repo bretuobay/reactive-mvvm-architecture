@@ -21,9 +21,9 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, computed, ref, watch } from "vue";
-import type { SensorReadingListData } from "@repo/view-models/SensorReadingViewModel";
-import { Line } from "vue-chartjs";
+import { defineProps, computed, ref, watch } from 'vue';
+import type { SensorReadingListData } from '@repo/view-models/SensorReadingViewModel';
+import { Line } from 'vue-chartjs';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -33,17 +33,9 @@ import {
   Title,
   Tooltip,
   Legend,
-} from "chart.js";
+} from 'chart.js';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const props = defineProps<{
   sensorReadingsProp?: SensorReadingListData | null;
@@ -59,13 +51,11 @@ const chartData = computed(() => {
   type ReadingItem = (typeof readings.value)[0];
 
   return {
-    labels: readings.value.map((r: ReadingItem) =>
-      new Date(r.timestamp).toLocaleTimeString()
-    ),
+    labels: readings.value.map((r: ReadingItem) => new Date(r.timestamp).toLocaleTimeString()),
     datasets: [
       {
         label: `Sensor Readings`,
-        borderColor: "rgb(75, 192, 192)",
+        borderColor: 'rgb(75, 192, 192)',
         data: readings.value.map((r: ReadingItem) => r.value),
         fill: false,
         tension: 0.1,
@@ -79,11 +69,11 @@ const chartOptions = ref({
   maintainAspectRatio: false,
   scales: {
     x: {
-      title: { display: true, text: "Time" },
+      title: { display: true, text: 'Time' },
       ticks: { autoSkip: true, maxTicksLimit: 10 },
     },
     y: {
-      title: { display: true, text: "Value" },
+      title: { display: true, text: 'Value' },
       beginAtZero: false,
     },
   },
@@ -96,7 +86,7 @@ const chartOptions = ref({
 watch(
   () => props.sensorReadingsProp,
   () => {},
-  { immediate: true, deep: true }
+  { immediate: true, deep: true },
 );
 </script>
 

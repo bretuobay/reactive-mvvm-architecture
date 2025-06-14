@@ -1,10 +1,10 @@
 Pull the repository.
 Your task is to duplicate the functionality of the apps/mvvm-react in apps/mvvm-vue.
-Add react  Add a router for vue
+Add react Add a router for vue
 Add chart.js ( version 4) for vue.
-Add "@repo/view-models": "*", so you can use the same view models in packages as used by the react app.
+Add "@repo/view-models": "\*", so you can use the same view models in packages as used by the react app.
 
-Create the equivalent components lik in react for 
+Create the equivalent components lik in react for
 GreenhouseCard
 SensorCard
 SensorReadingCard

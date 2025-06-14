@@ -1,12 +1,12 @@
 Pull the repository.
-Remember you are in a turbo repo managed repository set up to demonstrate mvvm architecture 
+Remember you are in a turbo repo managed repository set up to demonstrate mvvm architecture
 Your task is to duplicate the functionality of the apps/mvvm-react in apps/mvvm-angular.
 And angular 19.2.12 project has already been set up.
-Add a router for angular 
+Add a router for angular
 Add chart.js ( version 4) for angular.
-Install  "@repo/view-models": "*", so you can use the same view models in packages/view-models as used by the react app.
+Install "@repo/view-models": "\*", so you can use the same view models in packages/view-models as used by the react app.
 
-Create the equivalent components like in react for for angular. Use angular principles and best practices to inject the view models. 
+Create the equivalent components like in react for for angular. Use angular principles and best practices to inject the view models.
 
 GreenhouseCard
 SensorCard
@@ -24,13 +24,16 @@ Study rhe react approach but use what is inline with angular patterns
 A typical view model is a class like set up like:
 
 export class GreenHouseViewModel extends RestfulApiViewModel<
-  GreenhouseListData,
-  typeof GreenhouseListSchema
+GreenhouseListData,
+typeof GreenhouseListSchema
+
 > {
-  constructor(model: GreenHouseModel) {
+> constructor(model: GreenHouseModel) {
+
     super(model);
     this.model = model;
-  }
+
+}
 }
 
 const greenHouseModel = new GreenHouseModel();
@@ -38,7 +41,7 @@ export const greenHouseViewModel = new GreenHouseViewModel(greenHouseModel);
 
 export type { GreenhouseListData };
 
-You should try and use the greenHouseModel( already instantiated version just like the react app). Else try injecting the 
+You should try and use the greenHouseModel( already instantiated version just like the react app). Else try injecting the
 GreenHouseViewModel class.
 
 Create routes to map to the following components.
