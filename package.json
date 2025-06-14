@@ -22,6 +22,6 @@
     "packages/*"
   ],
   "dependencies": {
-    "mvvm-core": "0.4.4"
+    "mvvm-core": "0.4.6"
   }
 }
