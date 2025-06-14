@@ -1,11 +1,7 @@
-import { RestfulApiViewModel } from "mvvm-core";
-import { SensorReadingModel } from "../../models/src/SensorReadingModel";
-import { SensorReadingListData, SensorReadingListSchema } from "../../models";
+import { RestfulApiViewModel } from 'mvvm-core';
+import { type SensorReadingListData, SensorReadingListSchema, SensorReadingModel } from '@repo/models';
 
-export class SensorReadingViewModel extends RestfulApiViewModel<
-  SensorReadingListData,
-  typeof SensorReadingListSchema
-> {
+export class SensorReadingViewModel extends RestfulApiViewModel<SensorReadingListData, typeof SensorReadingListSchema> {
   constructor(model: SensorReadingModel) {
     super(model);
     this.model = model;
@@ -13,8 +9,6 @@ export class SensorReadingViewModel extends RestfulApiViewModel<
 }
 
 const sensorReadingModel = new SensorReadingModel();
-export const sensorReadingViewModel = new SensorReadingViewModel(
-  sensorReadingModel
-);
+export const sensorReadingViewModel = new SensorReadingViewModel(sensorReadingModel);
 
 export type { SensorReadingListData };

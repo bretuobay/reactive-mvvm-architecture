@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import {
-  thresholdAlertViewModel,
-  ThresholdAlertListData,
-} from '@repo/view-models/ThresholdAlertViewModel';
+import { thresholdAlertViewModel, ThresholdAlertListData } from '@repo/view-models/ThresholdAlertViewModel';
 import { Observable } from 'rxjs';
 
 @Component({

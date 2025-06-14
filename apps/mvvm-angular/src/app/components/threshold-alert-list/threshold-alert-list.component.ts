@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Includes NgFor, NgClass, DatePipe
-import {
-  thresholdAlertViewModel,
-  ThresholdAlertListData,
-} from '@repo/view-models/ThresholdAlertViewModel';
+import { thresholdAlertViewModel, ThresholdAlertListData } from '@repo/view-models/ThresholdAlertViewModel';
 import { Observable } from 'rxjs';
 import { RouterLink } from '@angular/router';
 import { BackIconComponent } from '../back-icon/back-icon.component';

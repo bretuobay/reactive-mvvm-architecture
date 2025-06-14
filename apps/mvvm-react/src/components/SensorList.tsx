@@ -1,8 +1,8 @@
-import { useEffect } from "react";
-import { sensorViewModel } from "@repo/view-models/SensorViewModel";
-import { useObservable } from "../hooks/useObservable";
-import { Link } from "react-router-dom";
-import BackArrow from "../assets/back-arrow.svg";
+import { useEffect } from 'react';
+import { sensorViewModel } from '@repo/view-models/SensorViewModel';
+import { useObservable } from '../hooks/useObservable';
+import { Link } from 'react-router-dom';
+import BackArrow from '../assets/back-arrow.svg';
 
 export function SensorList() {
   const sensors = useObservable(sensorViewModel.data$, []);
@@ -17,11 +17,7 @@ export function SensorList() {
   return (
     <>
       <Link to="/" className="back-button">
-        <img
-          src={BackArrow}
-          alt="Back to dashboard"
-          style={{ width: "36px", height: "36px" }}
-        />
+        <img src={BackArrow} alt="Back to dashboard" style={{ width: '36px', height: '36px' }} />
       </Link>
       <div className="card">
         <h1 className="card-title">Sensors</h1>

@@ -1,15 +1,6 @@
-import {
-  Table,
-  Column,
-  Model,
-  PrimaryKey,
-  AutoIncrement,
-  ForeignKey,
-  BelongsTo,
-  HasMany,
-} from "sequelize-typescript";
-import { Greenhouse } from "./Greenhouse";
-import { SensorReading } from "./SensorReading";
+import { Table, Column, Model, PrimaryKey, AutoIncrement, ForeignKey, BelongsTo, HasMany } from 'sequelize-typescript';
+import { Greenhouse } from './Greenhouse';
+import { SensorReading } from './SensorReading';
 
 @Table
 export class Sensor extends Model {
@@ -19,10 +10,10 @@ export class Sensor extends Model {
   id!: number;
 
   @Column
-  type!: "temperature" | "humidity" | "soilMoisture" | "lightIntensity";
+  type!: 'temperature' | 'humidity' | 'soilMoisture' | 'lightIntensity';
 
   @Column
-  status!: "active" | "inactive";
+  status!: 'active' | 'inactive';
 
   @ForeignKey(() => Greenhouse)
   @Column

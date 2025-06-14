@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Chart,
   LineController,
@@ -10,28 +10,17 @@ import {
   Title,
   Tooltip,
   Legend,
-} from "chart.js";
-import type { SensorReadingListData } from "@repo/view-models/SensorReadingViewModel";
+} from 'chart.js';
+import type { SensorReadingListData } from '@repo/view-models/SensorReadingViewModel';
 
 // Register Chart.js components
-Chart.register(
-  LineController,
-  LineElement,
-  PointElement,
-  LinearScale,
-  CategoryScale,
-  Title,
-  Tooltip,
-  Legend
-);
+Chart.register(LineController, LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend);
 
 interface SensorReadingCardProps {
   sensorReadings: SensorReadingListData;
 }
 
-const SensorReadingCard: React.FC<SensorReadingCardProps> = ({
-  sensorReadings,
-}) => {
+const SensorReadingCard: React.FC<SensorReadingCardProps> = ({ sensorReadings }) => {
   const chartInstanceRef = useRef<Chart | null>(null);
 
   useEffect(() => {
@@ -43,16 +32,14 @@ const SensorReadingCard: React.FC<SensorReadingCardProps> = ({
       return; // Don't render chart if there's no data
     }
 
-    const canvasElement = document.getElementById(
-      "sensorReadingsChart"
-    ) as HTMLCanvasElement | null;
+    const canvasElement = document.getElementById('sensorReadingsChart') as HTMLCanvasElement | null;
     if (!canvasElement) {
-      console.error("Canvas element not found");
+      console.error('Canvas element not found');
       return;
     }
-    const ctx = canvasElement.getContext("2d");
+    const ctx = canvasElement.getContext('2d');
     if (!ctx) {
-      console.error("Failed to get canvas context");
+      console.error('Failed to get canvas context');
       return;
     }
 
@@ -62,15 +49,13 @@ const SensorReadingCard: React.FC<SensorReadingCardProps> = ({
     }
 
     const chartData = {
-      labels: sensorReadings.map((reading) =>
-        new Date(reading.timestamp).toLocaleTimeString()
-      ),
+      labels: sensorReadings.map((reading) => new Date(reading.timestamp).toLocaleTimeString()),
       datasets: [
         {
-          label: "Sensor Value",
+          label: 'Sensor Value',
           data: sensorReadings.map((reading) => reading.value),
           fill: false,
-          borderColor: "rgb(75, 192, 192)",
+          borderColor: 'rgb(75, 192, 192)',
           tension: 0.1,
         },
       ],
@@ -83,13 +68,13 @@ const SensorReadingCard: React.FC<SensorReadingCardProps> = ({
         x: {
           title: {
             display: true,
-            text: "Time",
+            text: 'Time',
           },
         },
         y: {
           title: {
             display: true,
-            text: "Value",
+            text: 'Value',
           },
         },
       },
@@ -97,7 +82,7 @@ const SensorReadingCard: React.FC<SensorReadingCardProps> = ({
 
     // Create new chart instance
     chartInstanceRef.current = new Chart(ctx, {
-      type: "line",
+      type: 'line',
       data: chartData,
       options: chartOptions,
     });

@@ -1,6 +1,6 @@
-import type { GreenhouseListData } from "@repo/view-models/GreenHouseViewModel";
-import React from "react";
-import { Link } from "react-router-dom";
+import type { GreenhouseListData } from '@repo/view-models/GreenHouseViewModel';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface GreenhouseCardProps {
   greenHouses: GreenhouseListData | null;

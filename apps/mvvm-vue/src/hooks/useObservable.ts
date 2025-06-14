@@ -1,5 +1,5 @@
-import { ref, onUnmounted } from "vue";
-import { Observable } from "rxjs";
+import { ref, onUnmounted } from 'vue';
+import { Observable } from 'rxjs';
 
 export function useObservable<T>(observable: Observable<T>, initialValue: any) {
   const value = ref<T | undefined>(initialValue);

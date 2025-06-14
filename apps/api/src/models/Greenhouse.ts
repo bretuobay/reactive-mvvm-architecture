@@ -1,13 +1,6 @@
-import {
-  Table,
-  Column,
-  Model,
-  PrimaryKey,
-  AutoIncrement,
-  HasMany,
-} from "sequelize-typescript";
-import { Sensor } from "./Sensor";
-import { ThresholdAlert } from "./ThresholdAlert";
+import { Table, Column, Model, PrimaryKey, AutoIncrement, HasMany } from 'sequelize-typescript';
+import { Sensor } from './Sensor';
+import { ThresholdAlert } from './ThresholdAlert';
 
 @Table
 export class Greenhouse extends Model {

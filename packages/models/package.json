@@ -23,9 +23,5 @@
     "eslint": "^9.26.0",
     "jest": "^29.7.0",
     "typescript": "5.8.2"
-  },
-  "dependencies": {
-    "mvvm-core": "^0.4.6",
-    "zod": "^3.25.64"
   }
 }

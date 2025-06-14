@@ -38,11 +38,13 @@ This project utilizes the Model-View-ViewModel (MVVM) architecture to structure 
 - **ViewModel**: Acts as a bridge between the View and the Model. It prepares data from the Model in a way that is easily consumable by the View and handles user interactions from the View. The ViewModels are located in the `packages/view-models` directory.
 
 This separation of concerns offers several benefits:
+
 - **Improved Code Organization**: Code is more structured and easier to understand.
 - **Enhanced Testability**: Business logic in the ViewModel can be tested independently of the UI.
 - **Better Reusability**: Models and ViewModels can potentially be shared across different Views or even different UI frameworks.
 
 This architecture is leveraged by the following applications in this monorepo:
+
 - `apps/mvvm-angular`
 - `apps/mvvm-react`
 - `apps/mvvm-vue`

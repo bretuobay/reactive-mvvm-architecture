@@ -24,46 +24,37 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, computed } from "vue";
-import { useObservable } from "../hooks/useObservable";
+import { onMounted, computed } from 'vue';
+import { useObservable } from '../hooks/useObservable';
 
-import { greenHouseViewModel } from "@repo/view-models/GreenHouseViewModel";
-import { sensorViewModel } from "@repo/view-models/SensorViewModel";
-import { sensorReadingViewModel } from "@repo/view-models/SensorReadingViewModel";
-import { thresholdAlertViewModel } from "@repo/view-models/ThresholdAlertViewModel";
+import { greenHouseViewModel } from '@repo/view-models/GreenHouseViewModel';
+import { sensorViewModel } from '@repo/view-models/SensorViewModel';
+import { sensorReadingViewModel } from '@repo/view-models/SensorReadingViewModel';
+import { thresholdAlertViewModel } from '@repo/view-models/ThresholdAlertViewModel';
 
-import GreenhouseCard from "./GreenhouseCard.vue";
-import SensorCard from "./SensorCard.vue";
-import SensorReadingCard from "./SensorReadingCard.vue";
-import ThresholdAlertCard from "./ThresholdAlertCard.vue";
+import GreenhouseCard from './GreenhouseCard.vue';
+import SensorCard from './SensorCard.vue';
+import SensorReadingCard from './SensorReadingCard.vue';
+import ThresholdAlertCard from './ThresholdAlertCard.vue';
 
 const greenHouses = useObservable(greenHouseViewModel.data$, []);
-const isLoadingGreenHouses = useObservable(
-  greenHouseViewModel.isLoading$,
-  true
-);
+const isLoadingGreenHouses = useObservable(greenHouseViewModel.isLoading$, true);
 
 const sensors = useObservable(sensorViewModel.data$, []);
 const isLoadingSensors = useObservable(sensorViewModel.isLoading$, true);
 
 const sensorReadings = useObservable(sensorReadingViewModel.data$, []);
-const isLoadingSensorReadings = useObservable(
-  sensorReadingViewModel.isLoading$,
-  true
-);
+const isLoadingSensorReadings = useObservable(sensorReadingViewModel.isLoading$, true);
 
 const thresholdAlerts = useObservable(thresholdAlertViewModel.data$, []);
-const isLoadingThresholdAlerts = useObservable(
-  thresholdAlertViewModel.isLoading$,
-  true
-);
+const isLoadingThresholdAlerts = useObservable(thresholdAlertViewModel.isLoading$, true);
 
 const isLoading = computed(
   () =>
     isLoadingGreenHouses.value ||
     isLoadingSensors.value ||
     isLoadingSensorReadings.value ||
-    isLoadingThresholdAlerts.value
+    isLoadingThresholdAlerts.value,
 );
 
 onMounted(async () => {
@@ -73,7 +64,7 @@ onMounted(async () => {
     await sensorReadingViewModel.fetchCommand.execute();
     await thresholdAlertViewModel.fetchCommand.execute();
   } catch (error) {
-    console.error("Error fetching dashboard data:", error);
+    console.error('Error fetching dashboard data:', error);
   }
 });
 </script>

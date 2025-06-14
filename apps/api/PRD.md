@@ -169,9 +169,9 @@ POST /api/readings
 Ingest sensor data
 
 {
-  sensorId: string;
-  timestamp: string; // ISO 8601
-  value: number;
+sensorId: string;
+timestamp: string; // ISO 8601
+value: number;
 }
 
 GET /api/greenhouses
@@ -209,4 +209,3 @@ API Fit: Clean RESTful endpoints with natural aggregates
 Complexity: Enough for charts, tables, real-time updates, without overwhelming readers
 
 Would you like me to generate the backend folder structure, Sequelize schema, or a sample feature module to help with the book implementation?
-

@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import {
-  sensorViewModel,
-  SensorListData,
-} from '@repo/view-models/SensorViewModel';
+import { sensorViewModel, SensorListData } from '@repo/view-models/SensorViewModel';
 import { Observable } from 'rxjs';
 
 @Component({

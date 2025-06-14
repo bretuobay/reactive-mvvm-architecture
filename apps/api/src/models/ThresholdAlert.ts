@@ -1,13 +1,5 @@
-import {
-  Table,
-  Column,
-  Model,
-  PrimaryKey,
-  AutoIncrement,
-  ForeignKey,
-  BelongsTo,
-} from "sequelize-typescript";
-import { Greenhouse } from "./Greenhouse";
+import { Table, Column, Model, PrimaryKey, AutoIncrement, ForeignKey, BelongsTo } from 'sequelize-typescript';
+import { Greenhouse } from './Greenhouse';
 
 @Table
 export class ThresholdAlert extends Model {
@@ -24,7 +16,7 @@ export class ThresholdAlert extends Model {
   greenhouse!: Greenhouse;
 
   @Column
-  sensorType!: "temperature" | "humidity" | "soilMoisture" | "lightIntensity";
+  sensorType!: 'temperature' | 'humidity' | 'soilMoisture' | 'lightIntensity';
 
   @Column
   minValue!: number;

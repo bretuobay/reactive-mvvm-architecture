@@ -1,6 +1,5 @@
-import { RestfulApiViewModel } from "mvvm-core";
-import { ThresholdAlertModel } from "../../models/src/ThresholdAlertModel";
-import { ThresholdAlertListData, ThresholdAlertListSchema } from "../../models";
+import { RestfulApiViewModel } from 'mvvm-core';
+import { type ThresholdAlertListData, ThresholdAlertListSchema, ThresholdAlertModel } from '@repo/models';
 
 export class ThresholdAlertViewModel extends RestfulApiViewModel<
   ThresholdAlertListData,
@@ -13,7 +12,5 @@ export class ThresholdAlertViewModel extends RestfulApiViewModel<
 }
 
 const thresholdAlertModel = new ThresholdAlertModel();
-export const thresholdAlertViewModel = new ThresholdAlertViewModel(
-  thresholdAlertModel
-);
+export const thresholdAlertViewModel = new ThresholdAlertViewModel(thresholdAlertModel);
 export type { ThresholdAlertListData };

@@ -5,10 +5,10 @@
 </template>
 
 <script>
-import { computed } from "vue";
+import { computed } from 'vue';
 
 export default {
-  name: "Footer",
+  name: 'Footer',
   computed: {
     currentYear() {
       return new Date().getFullYear();

@@ -1,11 +1,7 @@
 // Shared Enums
-export type SensorType =
-  | "temperature"
-  | "humidity"
-  | "soilMoisture"
-  | "lightIntensity";
+export type SensorType = 'temperature' | 'humidity' | 'soilMoisture' | 'lightIntensity';
 
-export type SensorStatus = "active" | "inactive";
+export type SensorStatus = 'active' | 'inactive';
 
 // Greenhouse
 export interface CreateGreenhouseDTO {

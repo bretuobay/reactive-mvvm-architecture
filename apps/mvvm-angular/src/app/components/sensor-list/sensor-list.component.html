@@ -10,9 +10,7 @@
       <p>Greenhouse: {{ sensor.greenhouse.name }}</p>
       <p>
         Status:
-        <span [ngClass]="getStatusClass(sensor.status)">{{
-          sensor.status
-        }}</span>
+        <span [ngClass]="getStatusClass(sensor.status)">{{ sensor.status }}</span>
       </p>
     </li>
   </ul>

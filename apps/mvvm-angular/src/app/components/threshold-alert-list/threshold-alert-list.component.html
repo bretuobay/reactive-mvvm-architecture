@@ -5,9 +5,7 @@
   <h2 class="card-title">Threshold Alert List</h2>
 
   <!-- Loading State -->
-  <p class="card-content" *ngIf="loading$ | async">
-    Loading threshold alerts...
-  </p>
+  <p class="card-content" *ngIf="loading$ | async">Loading threshold alerts...</p>
 
   <!-- Error State -->
   <p class="card-content" *ngIf="error$ | async as error" class="error">

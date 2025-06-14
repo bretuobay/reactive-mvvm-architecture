@@ -1,8 +1,8 @@
-import { useEffect } from "react";
-import { greenHouseViewModel } from "@repo/view-models/GreenHouseViewModel";
-import { useObservable } from "../hooks/useObservable";
-import BackArrow from "../assets/back-arrow.svg";
-import { Link } from "react-router-dom";
+import { useEffect } from 'react';
+import { greenHouseViewModel } from '@repo/view-models/GreenHouseViewModel';
+import { useObservable } from '../hooks/useObservable';
+import BackArrow from '../assets/back-arrow.svg';
+import { Link } from 'react-router-dom';
 
 export function GreenhouseList() {
   const greenHouses = useObservable(greenHouseViewModel.data$, []);
@@ -12,7 +12,7 @@ export function GreenhouseList() {
       try {
         await greenHouseViewModel.fetchCommand.execute();
       } catch (error) {
-        console.error("Error fetching greenhouses:", error);
+        console.error('Error fetching greenhouses:', error);
       }
     };
     fetchData();
