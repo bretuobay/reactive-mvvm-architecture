@@ -1,0 +1,30 @@
+
+> docs@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.30
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+Failed to compile.
+
+./app/layout.tsx:36:10
+Type error: 'MDXProvider' cannot be used as a JSX component.
+  Its type '(properties: Readonly<Props>) => ReactElement<unknown, string | JSXElementConstructor<any>>' is not a valid JSX element type.
+    Type '(properties: Readonly<Props>) => ReactElement<unknown, string | JSXElementConstructor<any>>' is not assignable to type '(props: any, deprecatedLegacyContext?: any) => ReactNode'.
+      Type 'ReactElement<unknown, string | JSXElementConstructor<any>>' is not assignable to type 'ReactNode'.
+        Property 'children' is missing in type 'ReactElement<unknown, string | JSXElementConstructor<any>>' but required in type 'ReactPortal'.
+
+[0m [90m 34 |[39m     [33m<[39m[33mhtml[39m lang[33m=[39m[32m"en"[39m[33m>[39m[0m
+[0m [90m 35 |[39m       [33m<[39m[33mbody[39m className[33m=[39m{[32m`${geistSans.variable} ${geistMono.variable}`[39m}[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 36 |[39m         [33m<[39m[33mMDXProvider[39m components[33m=[39m{mdxComponents}[33m>[39m[0m
+[0m [90m    |[39m          [31m[1m^[22m[39m[0m
+[0m [90m 37 |[39m           {children}[0m
+[0m [90m 38 |[39m         [33m<[39m[33m/[39m[33mMDXProvider[39m[33m>[39m[0m
+[0m [90m 39 |[39m       [33m<[39m[33m/[39m[33mbody[39m[33m>[39m[0m
+Next.js build worker exited with code: 1 and signal: null
+npm ERR! Lifecycle script `build` failed with error:
+npm ERR! Error: command failed
+npm ERR!   in workspace: docs@0.1.0
+npm ERR!   at location: /app/apps/docs
