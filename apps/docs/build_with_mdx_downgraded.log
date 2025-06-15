@@ -1,0 +1,28 @@
+
+> docs@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.30
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+Failed to compile.
+
+../../packages/ui/src/button.tsx:14:7
+Type error: Type 'import("/app/packages/ui/node_modules/@types/react/index").ReactNode' is not assignable to type 'React.ReactNode'.
+  Type 'ReactElement<unknown, string | JSXElementConstructor<any>>' is not assignable to type 'ReactNode'.
+    Property 'children' is missing in type 'ReactElement<unknown, string | JSXElementConstructor<any>>' but required in type 'ReactPortal'.
+
+[0m [90m 12 |[39m   [36mreturn[39m ([0m
+[0m [90m 13 |[39m     [33m<[39m[33mbutton[39m className[33m=[39m{className} onClick[33m=[39m{() [33m=>[39m alert([32m`Hello from your ${appName} app!`[39m)}[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 14 |[39m       {children}[0m
+[0m [90m    |[39m       [31m[1m^[22m[39m[0m
+[0m [90m 15 |[39m     [33m<[39m[33m/[39m[33mbutton[39m[33m>[39m[0m
+[0m [90m 16 |[39m   )[33m;[39m[0m
+[0m [90m 17 |[39m }[33m;[39m[0m
+Next.js build worker exited with code: 1 and signal: null
+npm ERR! Lifecycle script `build` failed with error:
+npm ERR! Error: command failed
+npm ERR!   in workspace: docs@0.1.0
+npm ERR!   at location: /app/apps/docs

@@ -1,0 +1,32 @@
+# Data Models (`packages/models`)
+
+The `packages/models` directory is a crucial part of this monorepo, containing the core data structures that represent the application's domain entities. These models define the shape and nature of the data that the applications work with.
+
+## Purpose and Structure
+
+This package is designed to:
+
+*   **Define Data Entities:** Provide clear and consistent definitions for all data entities used across different applications (Angular, React, Vue) and the API.
+*   **Ensure Data Integrity:** By having a centralized place for models, we ensure that all parts of the system agree on the data structure.
+*   **Promote Reusability:** These models can be imported and used by any package or application within the monorepo, reducing code duplication.
+
+The models are typically TypeScript files, defining classes or interfaces that describe the properties of each entity.
+
+## Key Models
+
+Here are some of the key models defined in this package:
+
+*   **`GreenHouseModel.ts`**: Represents a greenhouse entity. It likely includes properties such as an identifier, name, location, and potentially a collection of associated sensors.
+*   **`SensorModel.ts`**: Defines a sensor within a greenhouse. This model would typically have properties like an identifier, type of sensor (e.g., temperature, humidity, light), its current status, and the greenhouse it belongs to.
+*   **`SensorReadingModel.ts`**: Represents a specific reading taken by a sensor at a particular time. It would include properties like the sensor ID it relates to, the value of the reading, and a timestamp.
+*   **`ThresholdAlertModel.ts`**: Defines an alert that is triggered when a sensor reading crosses predefined thresholds. This model likely includes details about the sensor involved, the reading that caused the alert, the threshold that was breached, and the time of the alert.
+
+## How They Represent Application Data
+
+These models are the backbone of the application's data layer.
+
+*   When the **API** receives requests or sends responses, it often uses these models (or Data Transfer Objects derived from them) to structure the data.
+*   The **ViewModel** layer (`packages/view-models`) consumes these models, transforming them and preparing them for presentation in the View.
+*   The **frontend applications** (Angular, React, Vue) might use these model definitions to understand the structure of data they receive from ViewModels or APIs.
+
+By centralizing these data definitions, `packages/models` plays a vital role in maintaining consistency and enabling interoperability between different parts of the project.

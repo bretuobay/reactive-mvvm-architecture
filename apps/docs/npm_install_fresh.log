@@ -1,0 +1,117 @@
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'npm@11.4.1',
+npm WARN EBADENGINE   required: { node: '^20.17.0 || >=22.9.0' },
+npm WARN EBADENGINE   current: { node: 'v18.19.1', npm: '9.2.0' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: '@npmcli/arborist@9.1.1',
+npm WARN EBADENGINE   required: { node: '^20.17.0 || >=22.9.0' },
+npm WARN EBADENGINE   current: { node: 'v18.19.1', npm: '9.2.0' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: '@npmcli/config@10.3.0',
+npm WARN EBADENGINE   required: { node: '^20.17.0 || >=22.9.0' },
+npm WARN EBADENGINE   current: { node: 'v18.19.1', npm: '9.2.0' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: '@npmcli/metavuln-calculator@9.0.0',
+npm WARN EBADENGINE   required: { node: '^20.17.0 || >=22.9.0' },
+npm WARN EBADENGINE   current: { node: 'v18.19.1', npm: '9.2.0' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'binary-extensions@3.1.0',
+npm WARN EBADENGINE   required: { node: '>=18.20' },
+npm WARN EBADENGINE   current: { node: 'v18.19.1', npm: '9.2.0' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'init-package-json@8.2.1',
+npm WARN EBADENGINE   required: { node: '^20.17.0 || >=22.9.0' },
+npm WARN EBADENGINE   current: { node: 'v18.19.1', npm: '9.2.0' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'libnpmaccess@10.0.1',
+npm WARN EBADENGINE   required: { node: '^20.17.0 || >=22.9.0' },
+npm WARN EBADENGINE   current: { node: 'v18.19.1', npm: '9.2.0' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'libnpmdiff@8.0.4',
+npm WARN EBADENGINE   required: { node: '^20.17.0 || >=22.9.0' },
+npm WARN EBADENGINE   current: { node: 'v18.19.1', npm: '9.2.0' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'libnpmexec@10.1.3',
+npm WARN EBADENGINE   required: { node: '^20.17.0 || >=22.9.0' },
+npm WARN EBADENGINE   current: { node: 'v18.19.1', npm: '9.2.0' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'libnpmfund@7.0.4',
+npm WARN EBADENGINE   required: { node: '^20.17.0 || >=22.9.0' },
+npm WARN EBADENGINE   current: { node: 'v18.19.1', npm: '9.2.0' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'libnpmorg@8.0.0',
+npm WARN EBADENGINE   required: { node: '^20.17.0 || >=22.9.0' },
+npm WARN EBADENGINE   current: { node: 'v18.19.1', npm: '9.2.0' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'libnpmpack@9.0.4',
+npm WARN EBADENGINE   required: { node: '^20.17.0 || >=22.9.0' },
+npm WARN EBADENGINE   current: { node: 'v18.19.1', npm: '9.2.0' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'libnpmpublish@11.0.0',
+npm WARN EBADENGINE   required: { node: '^20.17.0 || >=22.9.0' },
+npm WARN EBADENGINE   current: { node: 'v18.19.1', npm: '9.2.0' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'libnpmsearch@9.0.0',
+npm WARN EBADENGINE   required: { node: '^20.17.0 || >=22.9.0' },
+npm WARN EBADENGINE   current: { node: 'v18.19.1', npm: '9.2.0' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'libnpmteam@8.0.1',
+npm WARN EBADENGINE   required: { node: '^20.17.0 || >=22.9.0' },
+npm WARN EBADENGINE   current: { node: 'v18.19.1', npm: '9.2.0' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'libnpmversion@8.0.1',
+npm WARN EBADENGINE   required: { node: '^20.17.0 || >=22.9.0' },
+npm WARN EBADENGINE   current: { node: 'v18.19.1', npm: '9.2.0' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'npm-packlist@10.0.0',
+npm WARN EBADENGINE   required: { node: '^20.17.0 || >=22.9.0' },
+npm WARN EBADENGINE   current: { node: 'v18.19.1', npm: '9.2.0' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'pacote@21.0.0',
+npm WARN EBADENGINE   required: { node: '^20.17.0 || >=22.9.0' },
+npm WARN EBADENGINE   current: { node: 'v18.19.1', npm: '9.2.0' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'walk-up-path@4.0.0',
+npm WARN EBADENGINE   required: { node: '20 || >=22' },
+npm WARN EBADENGINE   current: { node: 'v18.19.1', npm: '9.2.0' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'react-router@7.6.1',
+npm WARN EBADENGINE   required: { node: '>=20.0.0' },
+npm WARN EBADENGINE   current: { node: 'v18.19.1', npm: '9.2.0' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'react-router-dom@7.6.1',
+npm WARN EBADENGINE   required: { node: '>=20.0.0' },
+npm WARN EBADENGINE   current: { node: 'v18.19.1', npm: '9.2.0' }
+npm WARN EBADENGINE }
+
+added 81 packages, and audited 700 packages in 16s
+
+243 packages are looking for funding
+  run `npm fund` for details
+
+1 low severity vulnerability
+
+To address all issues, run:
+  npm audit fix
+
+Run `npm audit` for details.

@@ -1,4 +1,19 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+import nextMDX from '@next/mdx';
 
-export default nextConfig;
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'], // Keep this commented/removed
+  experimental: {
+    mdxRs: true, // Try Re-enabling Rust compiler for MDX
+  },
+};
+
+const withMDX = nextMDX({
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+  },
+});
+
+// Merge MDXconfig with Next.js config
+export default withMDX(nextConfig);
