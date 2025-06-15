@@ -1,6 +1,6 @@
-# Turborepo starter
+# MVVM Architecture
 
-This Turborepo starter is maintained by the Turborepo core team.
+This project is to illustrate mvvm architecture in various frontend frameworks.
 
 ## Using this example
 
