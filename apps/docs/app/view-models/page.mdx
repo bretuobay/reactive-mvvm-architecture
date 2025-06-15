@@ -1,0 +1,33 @@
+# ViewModels (`packages/view-models`)
+
+The `packages/view-models` directory contains the ViewModels used in the MVVM architecture for this project. ViewModels are a key component that acts as an intermediary between the data (Models) and the user interface (Views).
+
+## Purpose and Structure
+
+This package is central to implementing the MVVM pattern and aims to:
+
+*   **Prepare Data for Display:** ViewModels take raw data from the Models and transform, format, or augment it for presentation in the View. This might include formatting dates, calculating derived properties, or aggregating data from multiple Models.
+*   **Expose Data and Commands:** They expose properties that the View can bind to for displaying data, and commands that the View can use to trigger actions (e.g., saving data, fetching new data).
+*   **Handle Presentation Logic:** Any logic related to how data is presented or how user interactions are handled (but isn't pure business logic) resides in the ViewModel.
+*   **Decouple View from Model:** The ViewModel ensures that the View doesn't directly interact with the Model, promoting better separation of concerns.
+*   **Enhance Testability:** Since ViewModels are typically plain TypeScript/JavaScript classes without direct dependencies on UI frameworks, they are easier to unit test.
+
+## Key ViewModel Classes
+
+Some of the primary ViewModel classes in this package include:
+
+*   **`GreenHouseViewModel.ts`**: Manages the presentation logic for greenhouse data. It might fetch `GreenHouseModel` instances, expose properties for the greenhouse's name, status, and lists of associated `SensorViewModels`.
+*   **`SensorViewModel.ts`**: Handles the logic for displaying individual sensor data. It would wrap a `SensorModel` and potentially a `SensorReadingModel` to provide properties like sensor name, type, current reading, and status to the View.
+*   **`SensorReadingViewModel.ts`**: Focuses on the presentation of sensor reading details. It might format timestamps, units of measurement, and provide context for individual readings.
+*   **`ThresholdAlertViewModel.ts`**: Manages the display logic for alerts. It would take a `ThresholdAlertModel` and prepare its information (e.g., alert message, severity, timestamp) for the UI.
+
+## Connecting Models to Views
+
+ViewModels are the glue in the MVVM pattern:
+
+1.  **Data Acquisition:** A ViewModel typically interacts with services (often defined within or imported into `packages/view-models/src/services/`) to fetch Model instances (e.g., from an API).
+2.  **Data Transformation:** Once it has the Model(s), the ViewModel processes this data. For instance, a `GreenHouseViewModel` might fetch a `GreenHouseModel` and its associated `SensorModel`s. It then might create an array of `SensorViewModel` instances, each wrapping a `SensorModel`.
+3.  **Exposure to View:** The ViewModel exposes the processed data through public properties. For example, `GreenHouseViewModel` might have a `sensors` array property that a View can iterate over to display sensor information.
+4.  **Handling User Actions:** Views can trigger commands or methods on the ViewModel (e.g., "refresh data", "acknowledge alert"). The ViewModel then performs the necessary actions, which might involve updating the Model, calling a service, or changing its own state, which in turn updates the View via data binding.
+
+By using `packages/view-models`, the project ensures that presentation logic is centralized, reusable, and testable, leading to cleaner and more maintainable frontend applications.

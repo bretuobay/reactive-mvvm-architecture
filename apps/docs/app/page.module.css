@@ -192,3 +192,40 @@ button.secondary {
     filter: invert();
   }
 }
+
+/* ... (existing styles) ... */
+
+.section {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: rgba(var(--card-rgb), 0.1);
+  border: 1px solid rgba(var(--card-border-rgb), 0.15);
+  border-radius: var(--border-radius);
+}
+
+.section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+}
+
+.linkList li {
+  margin-bottom: 0.75rem;
+}
+
+.linkList li a {
+  color: var(--primary-glow);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.linkList li a:hover {
+  text-decoration: underline;
+  color: var(--primary-glow-hover, var(--primary-glow)); /* Fallback if hover color not defined */
+}

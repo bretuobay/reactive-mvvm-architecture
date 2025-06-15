@@ -1,0 +1,152 @@
+# ViewModel Usage in Frontend Frameworks
+
+The ViewModels defined in `packages/view-models` are designed to be consumed by various frontend frameworks. This page outlines common patterns for integrating these ViewModels into Angular, React, and Vue applications.
+
+The core idea is to instantiate a ViewModel and then bind its properties and commands to the components of each framework.
+
+## General Principles
+
+*   **Instantiation:** ViewModels are typically instantiated within a component or a service provided to a component.
+*   **Data Binding:** Framework-specific data binding mechanisms are used to link component properties to ViewModel properties.
+*   **Command Handling:** User interactions in the View (e.g., button clicks) trigger commands or methods on the ViewModel.
+*   **Lifecycle Management:** ViewModels might need to be initialized when a component is created and cleaned up when a component is destroyed.
+
+## Angular (`apps/mvvm-angular`)
+
+Angular's architecture, with its strong emphasis on Dependency Injection (DI) and TypeScript, provides a robust way to integrate ViewModels.
+
+*   **Service-based Instantiation:** ViewModels can be provided as services, often at the component level. This allows Angular's DI system to manage their lifecycle.
+    ```typescript
+    // Example: Providing a ViewModel in an Angular component
+    import { Component } from '@angular/core';
+    import { GreenHouseViewModel } from '@repo/view-models'; // Assuming path alias
+
+    @Component({
+      selector: 'app-greenhouse-view',
+      templateUrl: './greenhouse-view.component.html',
+      providers: [GreenHouseViewModel] // Provide ViewModel
+    })
+    export class GreenHouseViewComponent {
+      constructor(public vm: GreenHouseViewModel) { // Inject and use
+        this.vm.loadGreenhouseData('gh-123');
+      }
+    }
+    ```
+*   **Data Binding:** Angular's template syntax (`{{ vm.propertyName }}` for interpolation, `[property]="vm.value"` for property binding, `(event)="vm.doSomething()"` for event binding) is used to connect the View to the ViewModel.
+*   **Observables:** ViewModels often expose data as Observables (e.g., using RxJS), which Angular components can subscribe to using the `async` pipe for automatic updates and lifecycle management.
+
+## React (`apps/mvvm-react`)
+
+In React, ViewModels are typically managed using hooks and state management.
+
+*   **Hooks for State and Lifecycle:** The `useState` and `useEffect` hooks are commonly used to manage the ViewModel instance and its data.
+    ```tsx
+    // Example: Using a ViewModel in a React functional component
+    import React, { useState, useEffect } from 'react';
+    import { SensorViewModel } from '@repo/view-models'; // Assuming path alias
+
+    interface SensorViewProps {
+      sensorId: string;
+    }
+
+    const SensorView: React.FC<SensorViewProps> = ({ sensorId }) => {
+      const [viewModel] = useState(() => new SensorViewModel()); // Instantiate
+      const [sensorName, setSensorName] = useState('');
+      const [currentReading, setCurrentReading] = useState<string | null>(null);
+
+      useEffect(() => {
+        // Function to update state from ViewModel
+        const updateState = () => {
+          setSensorName(viewModel.name);
+          setCurrentReading(viewModel.displayReading);
+          // ... other properties
+        };
+
+        // Subscribe to ViewModel changes (ViewModel needs to implement an observable pattern)
+        viewModel.onDataChanged = updateState; // Simplified subscription
+        viewModel.loadSensorData(sensorId);
+
+        return () => {
+          viewModel.onDataChanged = null; // Cleanup
+        };
+      }, [viewModel, sensorId]);
+
+      return (
+        <div>
+          <h1>{sensorName}</h1>
+          <p>Reading: {currentReading || 'Loading...'}</p>
+          <button onClick={() => viewModel.refreshReading()}>Refresh</button>
+        </div>
+      );
+    };
+    ```
+*   **Data Flow:** Data flows from the ViewModel to the component's state. Changes in the ViewModel (e.g., after fetching data) trigger state updates, which cause the component to re-render.
+*   **ViewModel Observable Pattern:** For the React component to react to changes within the ViewModel, the ViewModel itself should implement some form of observable pattern (e.g., a simple callback, or integrate with a state management library like MobX or Zustand if more complexity is needed).
+
+## Vue.js (`apps/mvvm-vue`)
+
+Vue's reactivity system makes integrating ViewModels straightforward.
+
+*   **Composition API or Options API:** ViewModels can be integrated using either the Composition API (recommended for new projects) or the Options API.
+    ```vue
+    // Example: Using a ViewModel with Vue's Composition API
+    <template>
+      <div>
+        <h1>{{ greenhouseName }}</h1>
+        <p>Status: {{ status }}</p>
+        <ul>
+          <li v-for="sensor in sensors" :key="sensor.id">
+            {{ sensor.name }}: {{ sensor.displayReading }}
+          </li>
+        </ul>
+        <button @click="viewModel.loadGreenhouseData('gh-main')">Reload Data</button>
+      </div>
+    </template>
+
+    <script setup lang="ts">
+    import { ref, onMounted, reactive } from 'vue';
+    import { GreenHouseViewModel, SensorViewModel } from '@repo/view-models'; // Assuming path alias
+
+    // It's often better to make the ViewModel itself reactive
+    // or parts of it, rather than copying properties.
+    // For simplicity, this example uses reactive() on the VM.
+    // A more robust approach might involve specific reactive properties within the VM
+    // or using a store pattern like Pinia.
+
+    const viewModel = reactive(new GreenHouseViewModel()); // Make the VM reactive
+
+    // Expose properties directly or via computed properties for more control
+    const greenhouseName = ref('');
+    const status = ref('');
+    const sensors = ref<SensorViewModel[]>([]); // Assuming SensorViewModel has an id
+
+    onMounted(async () => {
+      await viewModel.loadGreenhouseData('gh-main');
+      // Update local reactive refs based on ViewModel state
+      // This part needs a strategy for how the ViewModel communicates updates.
+      // For example, the ViewModel could emit events, or its properties could be made reactive.
+      // If the ViewModel's properties are themselves refs or reactive objects,
+      // Vue can track them.
+
+      // A simple approach if VM properties are not inherently reactive:
+      // (Requires ViewModel to have a way to subscribe to its changes or manual updates)
+      greenhouseName.value = viewModel.name; // Example property
+      status.value = viewModel.status; // Example property
+      sensors.value = viewModel.sensors; // Example property, assuming 'sensors' is an array on the VM
+    });
+
+    // If ViewModel methods cause changes, and the VM is reactive,
+    // Vue should pick up those changes automatically if data is bound correctly.
+    </script>
+    ```
+*   **Reactivity:** Vue's `reactive` or `ref` can be used to make ViewModel instances or their properties reactive. When data in the ViewModel changes, the component's template updates automatically.
+*   **Lifecycle Hooks:** Hooks like `onMounted` are used to initialize data by calling ViewModel methods.
+
+## Note on ViewModel Design
+
+For seamless integration, ViewModels in `packages/view-models` should ideally be designed to:
+
+*   **Be framework-agnostic:** Avoid dependencies on specific framework features within the ViewModel classes themselves.
+*   **Provide mechanisms for change notification:** This could be through callbacks, events, or by structuring properties to be easily adaptable by each framework's reactivity system (e.g., returning Promises or Observables for asynchronous data, or allowing properties to be wrapped by Vue's `ref`/`reactive` or React state).
+
+By following these patterns, the sample applications in `apps/mvvm-angular`, `apps/mvvm-react`, and `apps/mvvm-vue` can effectively utilize the shared ViewModels to manage their presentation logic. Refer to the specific source code of these applications for detailed implementation examples.
