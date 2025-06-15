@@ -2,10 +2,11 @@
   <a class="header-item" routerLink="/" routerLinkActive="active">Dashboard </a>
   <ul class="flex-container">
     <nav className="flex-container">
-      <a class="header-item" routerLink="/greenhouses" routerLinkActive="active">Greenhouses</a>
-      <a class="header-item" routerLink="/sensors" routerLinkActive="active">Sensors </a>
-      <a class="header-item" routerLink="/sensor-readings" routerLinkActive="active">Sensor Readings</a>
-      <a class="header-item" routerLink="/threshold-alerts" routerLinkActive="active">Threshold Alerts</a>
+      <ng-container *ngIf="navigationList$ | async as navigationList">
+        <a class="header-item" *ngFor="let item of navigationList" [routerLink]="['/', item.id]">
+          {{ item.label }}
+        </a>
+      </ng-container>
     </nav>
   </ul>
 </header>
