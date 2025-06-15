@@ -1,24 +1,20 @@
+import { navigationViewModel } from '@repo/shared/view-models/NavigationViewModel';
 import { Link } from 'react-router-dom';
+import { useObservable } from '../hooks/useObservable';
 
 export const Header = () => {
+  const navigation = useObservable(navigationViewModel.navigationList.items$, []);
   return (
     <header className="header">
       <Link to="/" className="header-item">
         Dashboard
       </Link>
       <nav className="flex-container">
-        <Link to="/greenhouses" className="header-item">
-          Greenhouses
-        </Link>
-        <Link to="/sensors" className="header-item">
-          Sensors
-        </Link>
-        <Link to="/sensor-readings" className="header-item">
-          Sensor Readings
-        </Link>
-        <Link to="/threshold-alerts" className="header-item">
-          Threshold Alerts
-        </Link>
+        {navigation.map((item) => (
+          <Link key={item.id} to={`/${item.id}`} className="header-item">
+            <i className={`icon-${item.icon}`}></i> {item.label}
+          </Link>
+        ))}
       </nav>
     </header>
   );
