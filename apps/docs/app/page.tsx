@@ -1,3 +1,4 @@
+'use client';
 import Image, { type ImageProps } from 'next/image';
 import { Button } from '@repo/ui/button';
 import Link from 'next/link';
@@ -29,8 +30,7 @@ export default function Page() {
             Starter Template
           </h1>
           <p className={styles.description}>
-            A monorepo starter template for building apps and websites with Next.js, Tailwind CSS,
-            MDX, and Turborepo.
+            A monorepo starter template for building apps and websites with Next.js, Tailwind CSS, MDX, and Turborepo.
           </p>
           <div className={styles.ctas}>
             <a className="primary" href="https://example.com">
@@ -80,14 +80,7 @@ export default function Page() {
       </div>
 
       <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+        <Image className={styles.logo} src="/next.svg" alt="Next.js Logo" width={180} height={37} priority />
       </div>
 
       <div className={styles.grid}>
@@ -136,9 +129,7 @@ export default function Page() {
           <h2>
             Deploy <span>-&gt;</span>
           </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
+          <p>Instantly deploy your Next.js site to a shareable URL with Vercel.</p>
         </a>
       </div>
     </main>

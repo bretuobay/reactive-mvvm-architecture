@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
@@ -12,10 +13,10 @@ const geistMono = localFont({
   variable: '--font-geist-mono',
 });
 
-export const metadata: Metadata = {
-  title: 'Docs App', // Simplified title
-  description: 'Documentation app for the project.', // Simplified description
-};
+// export const metadata: Metadata = {
+//   title: 'Docs App', // Simplified title
+//   description: 'Documentation app for the project.', // Simplified description
+// };
 
 export default function RootLayout({
   children,
@@ -24,9 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-          {children}
-      </body>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body>
     </html>
   );
 }
