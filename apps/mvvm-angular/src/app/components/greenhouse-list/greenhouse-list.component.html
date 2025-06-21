@@ -13,7 +13,13 @@
         class="input-field"
         placeholder="Enter greenhouse name"
       />
-      <div *ngIf="greenhouseForm.get('name')?.invalid && (greenhouseForm.get('name')?.dirty || greenhouseForm.get('name')?.touched)" class="error-message">
+      <div
+        *ngIf="
+          greenhouseForm.get('name')?.invalid &&
+          (greenhouseForm.get('name')?.dirty || greenhouseForm.get('name')?.touched)
+        "
+        class="error-message"
+      >
         Name is required.
       </div>
     </div>
@@ -28,7 +34,13 @@
         class="textarea-field"
         placeholder="Location"
       ></textarea>
-      <div *ngIf="greenhouseForm.get('location')?.invalid && (greenhouseForm.get('location')?.dirty || greenhouseForm.get('location')?.touched)" class="error-message">
+      <div
+        *ngIf="
+          greenhouseForm.get('location')?.invalid &&
+          (greenhouseForm.get('location')?.dirty || greenhouseForm.get('location')?.touched)
+        "
+        class="error-message"
+      >
         Location is required.
       </div>
     </div>
@@ -41,25 +53,23 @@
         <option value="50sqm">50sqm / Medium</option>
         <option value="100sqm">100sqm / Large</option>
       </select>
-      <div *ngIf="greenhouseForm.get('size')?.invalid && (greenhouseForm.get('size')?.dirty || greenhouseForm.get('size')?.touched)" class="error-message">
+      <div
+        *ngIf="
+          greenhouseForm.get('size')?.invalid &&
+          (greenhouseForm.get('size')?.dirty || greenhouseForm.get('size')?.touched)
+        "
+        class="error-message"
+      >
         Size is required.
       </div>
     </div>
 
     <div class="form-group">
       <label for="cropType">Crop Type:</label>
-      <input
-        type="text"
-        id="cropType"
-        formControlName="cropType"
-        class="input-field"
-        placeholder="Enter crop type"
-      />
+      <input type="text" id="cropType" formControlName="cropType" class="input-field" placeholder="Enter crop type" />
     </div>
 
-    <button type="submit" class="button" [disabled]="greenhouseForm.invalid">
-      Submit
-    </button>
+    <button type="submit" class="button" [disabled]="greenhouseForm.invalid">Submit</button>
   </form>
 
   <div class="card" style="max-width: 600px">
@@ -68,23 +78,17 @@
       <p>Loading greenhouses...</p>
     </div>
     <ng-container *ngIf="greenhouses$ | async as greenhouseList">
-      <div *ngIf="greenhouseList && greenhouseList.length > 0; else noGreenhouses" >
+      <div *ngIf="greenhouseList && greenhouseList.length > 0; else noGreenhouses">
         <ul class="card-content list">
-          <li *ngFor="let gh of greenhouseList" class="list-item" style="font-size: 1.8rem; justify-content: space-between">
+          <li
+            *ngFor="let gh of greenhouseList"
+            class="list-item"
+            style="font-size: 1.8rem; justify-content: space-between"
+          >
             <span>{{ gh.name }}</span>
             <div class="button-group">
-              <button
-                class="button-tiny button-tiny-delete"
-                (click)="handleDelete(gh.id)"
-              >
-                Delete
-              </button>
-              <button
-                class="button-tiny button-tiny-edit"
-                (click)="handleUpdate(gh.id)"
-              >
-                Edit
-              </button>
+              <button class="button-tiny button-tiny-delete" (click)="handleDelete(gh?.id)">Delete</button>
+              <button class="button-tiny button-tiny-edit" (click)="handleUpdate(gh?.id)">Edit</button>
             </div>
           </li>
         </ul>
