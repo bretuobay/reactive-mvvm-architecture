@@ -1,14 +1,13 @@
-import { RestfulApiViewModel } from 'mvvm-core';
-import { type SensorReadingListData, SensorReadingListSchema, SensorReadingModel } from '@repo/models';
+import { createReactiveViewModel, type ViewModelFactoryConfig } from 'mvvm-core';
+import { type SensorReadingListData, SensorReadingListSchema, sensorReadingsConfig } from '@repo/models';
 
-export class SensorReadingViewModel extends RestfulApiViewModel<SensorReadingListData, typeof SensorReadingListSchema> {
-  constructor(model: SensorReadingModel) {
-    super(model);
-    this.model = model;
-  }
-}
+type TConfig = ViewModelFactoryConfig<SensorReadingListData, typeof SensorReadingListSchema>;
 
-const sensorReadingModel = new SensorReadingModel();
-export const sensorReadingViewModel = new SensorReadingViewModel(sensorReadingModel);
+const config: TConfig = {
+  modelConfig: sensorReadingsConfig,
+  schema: SensorReadingListSchema,
+};
+
+export const sensorReadingViewModel = createReactiveViewModel(config);
 
 export type { SensorReadingListData };

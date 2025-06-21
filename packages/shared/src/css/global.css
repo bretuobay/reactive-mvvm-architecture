@@ -159,6 +159,10 @@ body {
   flex-direction: column;
 }
 
+.flex-row {
+  flex-direction: row;
+}
+
 .flex-item {
   /* Basic styling for flex items if needed, e.g., for sizing */
   flex: 1;
@@ -178,4 +182,14 @@ body {
 .back-arrow {
   width: 36px;
   height: 36px;
+}
+
+.back-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 100%; */
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }

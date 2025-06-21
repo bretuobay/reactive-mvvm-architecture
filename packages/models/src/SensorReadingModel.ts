@@ -6,7 +6,7 @@ import { apiRegistry } from './services/services';
 import { API_BASE_URL } from './config';
 const { path } = apiRegistry.reading.list;
 
-const CONFIG = {
+export const sensorReadingsConfig = {
   baseUrl: API_BASE_URL,
   endpoint: path,
   fetcher: nativeFetcher,
@@ -17,7 +17,7 @@ const CONFIG = {
 
 export class SensorReadingModel extends RestfulApiModel<SensorReadingListData, typeof SensorReadingListSchema> {
   constructor() {
-    super(CONFIG);
+    super(sensorReadingsConfig);
   }
 
   // async fetch(id?: string | string[]): Promise<void> {
