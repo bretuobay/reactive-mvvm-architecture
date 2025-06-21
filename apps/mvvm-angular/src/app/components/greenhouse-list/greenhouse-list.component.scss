@@ -1,9 +1,183 @@
-.back-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1000;
+/* apps/mvvm-angular/src/app/components/greenhouse-list/greenhouse-list.component.scss */
+/* Replicating styles from React/Vue version and ensuring they are scoped or global as needed */
+
+:host {
+  display: block; /* Or as appropriate for the layout */
 }
+
+.back-button {
+  display: inline-block; /* Changed from flex to match other implementations */
+  margin-bottom: 1rem;
+  /* Assuming back-icon component handles its own styling for size */
+}
+
+.flex-container {
+  display: flex;
+  gap: 2rem; /* Space between form and list */
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.form-container {
+  flex: 1; /* Allow form to take available space */
+  max-width: 500px; /* Or as desired */
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold; /* Added for better visibility */
+}
+
+.input-field,
+.textarea-field,
+.select-field {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1rem; /* Ensure consistent font size */
+}
+
+.textarea-field {
+  resize: vertical;
+  min-height: 60px; /* Ensure a decent default size */
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.15s ease-in-out; /* Smooth transition */
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.card {
+  flex: 1.5; /* Allow card to take more space */
+  /* Assuming card styles are global from styles.scss or similar */
+  /* If not, replicate them here or import a shared stylesheet */
+  /* Example card styles (if not global):
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  */
+}
+
+.card-title {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.5rem; /* Or as per design */
+}
+
+.list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0; /* Increased padding for better spacing */
+  border-bottom: 1px solid #eee;
+  font-size: 1rem; /* Adjusted from 1.8rem for consistency if needed, or keep if design requires */
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.list-item span {
+  word-break: break-word; /* Prevent long names from breaking layout */
+}
+
+
+.button-group {
+  display: flex;
+  gap: 0.5rem; /* Space between buttons in the group */
+}
+
+.button-tiny {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  border-radius: 3px;
+  border: 1px solid transparent; /* Base border */
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+.button-tiny-delete {
+  background-color: #dc3545;
+  color: white;
+  border-color: #dc3545;
+}
+
+.button-tiny-delete:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.button-tiny-edit {
+  background-color: #ffc107;
+  color: #212529;
+  border-color: #ffc107;
+}
+
+.button-tiny-edit:hover {
+  background-color: #e0a800;
+  border-color: #d39e00;
+}
+
+.error-message {
+  color: #dc3545; /* Standard error color */
+  font-size: 0.875em;
+  margin-top: 0.25rem;
+}
+
+/* Ensure global styles for card, card-title etc. are available or define them here */
+/* For example, if they are in apps/mvvm-angular/src/styles.scss, they should apply.
+   If not, consider adding them to styles.scss or here if they are very component-specific.
+*/
+
+/* Overriding some global styles if necessary, or ensuring they are applied correctly */
+/* Example: if .card is not styled globally, add basic styling */
+/*
+.card {
+  background: #fff;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);
+  padding: 1.25rem;
+}
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.125;
+  margin-bottom: 0.75rem;
+}
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+*/
