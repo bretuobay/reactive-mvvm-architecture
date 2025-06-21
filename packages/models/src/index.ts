@@ -27,5 +27,5 @@ export * from './utils/fetcher';
 
 export { GreenHouseModel, greenHouseConfig } from './GreenHouseModel';
 export { SensorModel } from './SensorModel';
-export { SensorReadingModel } from './SensorReadingModel';
+export { SensorReadingModel, sensorReadingsConfig } from './SensorReadingModel';
 export { ThresholdAlertModel } from './ThresholdAlertModel';
