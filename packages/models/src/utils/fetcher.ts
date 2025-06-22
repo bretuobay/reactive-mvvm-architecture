@@ -3,6 +3,24 @@
 // import { Fetcher } from "mvvm-core"; // Assuming RestfulApiModel.ts defines Fetcher type
 
 /**
+ * Interface for a single cache entry.
+ * @template T The type of the data being cached.
+ */
+export interface CacheEntry<T = any> {
+  timestamp: number;
+  data: T;
+}
+
+/**
+ * Interface for the structure of the API cache.
+ * Keys are URLs (string), values are CacheEntry objects.
+ * @template T The type of the data being cached.
+ */
+export interface ApiCache<T = any> {
+  [url: string]: CacheEntry<T>;
+}
+
+/**
  * Custom error class for API responses that are not OK (status 2xx).
  * This allows for specific error handling based on HTTP status codes.
  */
@@ -39,9 +57,9 @@ export class HttpError extends Error {
  * @throws `HttpError` for non-2xx HTTP responses, containing status and parsed body.
  * @throws `Error` with `name: 'AbortError'` if the request times out.
  * @throws other `Error` types for network issues or unexpected problems.
+ * TDOO: typing by any is not ideal, but it allows for flexibility in the fetcher function.
  */
 export const nativeFetcher: any = async (
-  //Fetcher should be fixed
   url: string,
   options?: RequestInit,
   timeoutMs: number = 30000, // Default timeout of 30 seconds
@@ -118,3 +136,90 @@ export const nativeFetcher: any = async (
     }
   }
 };
+
+const DEFAULT_CACHE_DURATION_MS = 5 * 60 * 1000; // 5 minutes
+const persistentApiResponseCacheKey = 'persistentApiResponseCache';
+const apiResponseCache: Map<string, CacheEntry> = new Map();
+
+/**
+ * Fetches data from a URL with caching capabilities.
+ *
+ * @template T The expected type of the JSON response data.
+ * @param {string} url The URL to fetch.
+ * @param {RequestInit} [options] Standard fetch options. Only GET requests are cached unless overridden.
+ * @param {number} [cacheDurationMs=300000] How long to cache the response in milliseconds (default: 5 minutes).
+ * @param {boolean} [forceRefresh=false] If true, bypasses the cache and fetches a fresh response.
+ * @returns {Promise<T>} A promise that resolves to the fetched data.
+ * @throws {HttpError} For non-2xx HTTP responses.
+ * @throws {Error} For network issues, timeouts, or other unexpected problems.
+ */
+export async function fetchWithCache<T = any>(
+  url: string,
+  options?: RequestInit,
+  cacheDurationMs: number = DEFAULT_CACHE_DURATION_MS,
+  forceRefresh: boolean = false,
+): Promise<T> {
+  const method = options?.method?.toUpperCase() || 'GET';
+
+  // Only cache GET requests
+  if (method !== 'GET') {
+    const response = await nativeFetcher(url, options);
+    return response.json() as Promise<T>;
+  }
+
+  // 1. Check in-memory cache
+  if (!forceRefresh && apiResponseCache.has(url)) {
+    const cachedEntry = apiResponseCache.get(url)!;
+    if (Date.now() - cachedEntry.timestamp < cacheDurationMs) {
+      return Promise.resolve(cachedEntry.data as T);
+    }
+  }
+
+  // 2. Try persistent cache (localStorage)
+  if (!forceRefresh) {
+    try {
+      const storedCache = localStorage.getItem(persistentApiResponseCacheKey);
+      if (storedCache) {
+        const persistentCache: ApiCache<T> = JSON.parse(storedCache);
+        const cachedEntry = persistentCache[url];
+        if (cachedEntry && Date.now() - cachedEntry.timestamp < cacheDurationMs) {
+          apiResponseCache.set(url, cachedEntry); // Update in-memory cache
+          return Promise.resolve(cachedEntry.data);
+        }
+      }
+    } catch (error) {
+      console.warn('Failed to read or parse persistent cache:', error);
+      // Clear corrupted cache
+      localStorage.removeItem(persistentApiResponseCacheKey);
+    }
+  }
+
+  // 3. Fetch from network
+  try {
+    const response = await nativeFetcher(url, options);
+    const data = (await response.json()) as T;
+
+    // 4. Update caches
+    const newCacheEntry: CacheEntry<T> = {
+      timestamp: Date.now(),
+      data,
+    };
+    apiResponseCache.set(url, newCacheEntry);
+
+    try {
+      const storedCache = localStorage.getItem(persistentApiResponseCacheKey);
+      const persistentCache: ApiCache<T> = storedCache ? JSON.parse(storedCache) : {};
+      persistentCache[url] = newCacheEntry;
+      localStorage.setItem(persistentApiResponseCacheKey, JSON.stringify(persistentCache));
+    } catch (error) {
+      console.warn('Failed to update persistent cache:', error);
+    }
+
+    return data;
+  } catch (error) {
+    // If fetch fails, remove potentially stale entry from in-memory cache to avoid returning it on next try.
+    // Persistent cache will be overwritten on next successful fetch.
+    apiResponseCache.delete(url);
+    throw error; // Re-throw the error from nativeFetcher
+  }
+}
