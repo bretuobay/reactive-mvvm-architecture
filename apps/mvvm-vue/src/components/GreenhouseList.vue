@@ -87,9 +87,7 @@
 import { onMounted, ref, reactive } from 'vue';
 import { greenHouseViewModel } from '@repo/view-models/GreenHouseViewModel';
 import { useObservable } from '../hooks/useObservable';
-// import BackArrow from '../assets/back-arrow.svg?component'; // Use ?component to import as a Vue component
 import BackArrow from '../assets/back-arrow.svg';
-// import type { GreenHouseModel } from '@repo/models/GreenHouseModel';
 
 const isLoading = useObservable(greenHouseViewModel.isLoading$, true);
 const greenhouses = useObservable(greenHouseViewModel.data$, []);
@@ -103,7 +101,6 @@ const initialFormData = {
   cropType: '',
 };
 const formData = reactive({ ...initialFormData });
-// To store the ID of the greenhouse being edited
 const editingGreenhouseId = ref<string | null | undefined>(null);
 
 onMounted(() => {
@@ -125,12 +122,13 @@ const handleSubmit = (event: Event) => {
     if (existingGreenhouse) {
       greenHouseViewModel.updateCommand.execute({
         id: existingGreenhouse.id || '',
-        ...existingGreenhouse,
-        // @ts-ignore - known issue with single object vs array
-        name: data.name,
-        location: data.location,
-        size: data.size,
-        cropType: data.cropType,
+        payload: {
+          ...existingGreenhouse,
+          name: data.name,
+          location: data.location,
+          size: data.size,
+          cropType: data.cropType,
+        },
       });
     }
   } else {
@@ -139,16 +137,16 @@ const handleSubmit = (event: Event) => {
       console.error('Greenhouse with this name already exists:', name);
       greenHouseViewModel.updateCommand.execute({
         id: existingGreenhouseByName.id || '',
-        ...existingGreenhouseByName,
-        // @ts-ignore - known issue with single object vs array
-        name: data.name,
-        location: data.location,
-        size: data.size,
-        cropType: data.cropType,
+        payload: {
+          ...existingGreenhouseByName,
+          name: data.name,
+          location: data.location,
+          size: data.size,
+          cropType: data.cropType,
+        },
       });
       return;
     }
-    // @ts-ignore - known issue with single object vs array
     greenHouseViewModel.createCommand.execute(data);
   }
 

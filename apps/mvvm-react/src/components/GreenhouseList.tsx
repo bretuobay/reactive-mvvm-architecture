@@ -37,12 +37,13 @@ export function GreenhouseList() {
       //  so by pass for now and fix in mvvm-core later
       greenHouseViewModel.updateCommand.execute({
         id: existingGreenhouse.id || '',
-        ...existingGreenhouse,
-        // @ts-ignore
-        name,
-        location,
-        size,
-        cropType,
+        payload: {
+          ...existingGreenhouse,
+          name,
+          location,
+          size,
+          cropType,
+        },
       });
 
       return;
@@ -51,7 +52,7 @@ export function GreenhouseList() {
     //  problem with schema means that there is a mis match and execute expects and array of objects
     //  but his is currently a single object
     //  so by pass for now and fix in mvvm-core later
-    // @ts-ignore
+
     greenHouseViewModel.createCommand.execute(data);
   };
 
