@@ -1,7 +1,7 @@
 import { createReactiveViewModel, type ViewModelFactoryConfig } from 'mvvm-core';
 
 import { greenHouseConfig } from '@repo/models';
-import { type GreenhouseListData, GreenhouseListSchema } from '@repo/models';
+import { type GreenhouseListData, GreenhouseListSchema, GreenhouseData } from '@repo/models';
 
 type TConfig = ViewModelFactoryConfig<GreenhouseListData, typeof GreenhouseListSchema>;
 
@@ -12,4 +12,4 @@ const config: TConfig = {
 
 export const greenHouseViewModel = createReactiveViewModel(config);
 
-export type { GreenhouseListData };
+export type { GreenhouseListData, GreenhouseData };

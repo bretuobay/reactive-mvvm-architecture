@@ -2,16 +2,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { GreenhouseListData, greenHouseViewModel } from '@repo/view-models/GreenHouseViewModel';
+import { GreenhouseData, greenHouseViewModel } from '@repo/view-models/GreenHouseViewModel';
 import { BackIconComponent } from '../back-icon/back-icon.component';
 import { Observable, Subscription, tap } from 'rxjs';
 import { RouterLink } from '@angular/router';
-
-//  all needs fixing in mvvm-core
-export type TGreenhouseFormData = GreenhouseListData & {
-  id?: string; // Optional field for editing
-  name: string;
-};
 
 @Component({
   selector: 'app-greenhouse-list',
@@ -22,13 +16,13 @@ export type TGreenhouseFormData = GreenhouseListData & {
 })
 export class GreenhouseListComponent implements OnInit, OnDestroy {
   public vm = greenHouseViewModel;
-  public greenhouses$: Observable<TGreenhouseFormData[] | null>;
+  public greenhouses$: Observable<GreenhouseData[] | null>;
   public loading$: Observable<boolean>;
   public error$: Observable<any>;
 
   greenhouseForm: FormGroup;
   editingGreenhouseId: string | null | undefined = null;
-  greenhouses: TGreenhouseFormData[] = [];
+  greenhouses: GreenhouseData[] = [];
   private greenhousesSubscription: Subscription | undefined;
 
   greenHouseSizeOptions = ['25sqm', '50sqm', '100sqm'] as const;
@@ -67,36 +61,34 @@ export class GreenhouseListComponent implements OnInit, OnDestroy {
     const formDataValue = this.greenhouseForm.value;
 
     if (this.editingGreenhouseId) {
-      // @ts-ignore
       const existingGreenhouse = this.greenhouses.find((gh) => gh.name === this.editingGreenhouseId);
       if (existingGreenhouse) {
         this.vm.updateCommand.execute({
           id: this.editingGreenhouseId,
-          ...existingGreenhouse, // spread existing to keep other properties
-          // @ts-ignore
-          name: formDataValue.name,
-          location: formDataValue.location,
-          size: formDataValue.size,
-          cropType: formDataValue.cropType,
+          payload: {
+            ...existingGreenhouse, // spread existing to keep other properties
+            name: formDataValue.name,
+            location: formDataValue.location,
+            size: this.greenHouseSizeOptions.includes(formDataValue.size) ? formDataValue.size : '100sqm', // default to '25sqm' if not valid
+            cropType: formDataValue.cropType,
+          },
         });
       }
     } else {
-      // @ts-ignore
       const existingGreenhouseByName = this.greenhouses.find((gh) => gh.name === formDataValue.name);
       if (existingGreenhouseByName) {
         console.error('Greenhouse with this name already exists:', formDataValue.name);
         this.vm.updateCommand.execute({
-          // @ts-ignore
           id: existingGreenhouseByName.id || '',
-          ...existingGreenhouseByName,
-          // @ts-ignore
-          name: formDataValue.name,
-          location: formDataValue.location,
-          size: formDataValue.size,
-          cropType: formDataValue.cropType,
+          payload: {
+            ...existingGreenhouseByName,
+            name: formDataValue.name,
+            location: formDataValue.location,
+            size: this.greenHouseSizeOptions.includes(formDataValue.size) ? formDataValue.size : '100sqm', // default to '100sqm' if not valid
+            cropType: formDataValue.cropType,
+          },
         });
       } else {
-        // @ts-ignore - known issue with single object vs array
         this.vm.createCommand.execute(formDataValue);
       }
     }
@@ -107,19 +99,15 @@ export class GreenhouseListComponent implements OnInit, OnDestroy {
 
   handleUpdate(id?: string): void {
     if (!id) return;
-    // @ts-ignore
     const greenhouse = this.greenhouses.find((gh) => gh.id === id);
     if (greenhouse) {
-      // @ts-ignore
       this.editingGreenhouseId = greenhouse.id;
       this.greenhouseForm.patchValue({
-        // @ts-ignore
         name: greenhouse.name,
-        // @ts-ignore
         location: greenhouse.location,
-        // @ts-ignore
-        size: greenhouse.size,
-        // @ts-ignore
+        size: this.greenHouseSizeOptions.includes(greenhouse.size as (typeof this.greenHouseSizeOptions)[number])
+          ? greenhouse.size
+          : '100sqm', // Default to '100sqm' if invalid
         cropType: greenhouse.cropType || '',
       });
     } else {
