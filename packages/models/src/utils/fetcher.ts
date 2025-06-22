@@ -57,8 +57,9 @@ export class HttpError extends Error {
  * @throws `HttpError` for non-2xx HTTP responses, containing status and parsed body.
  * @throws `Error` with `name: 'AbortError'` if the request times out.
  * @throws other `Error` types for network issues or unexpected problems.
+ * TDOO: typing by any is not ideal, but it allows for flexibility in the fetcher function.
  */
-export const nativeFetcher = async (
+export const nativeFetcher: any = async (
   url: string,
   options?: RequestInit,
   timeoutMs: number = 30000, // Default timeout of 30 seconds
@@ -196,7 +197,7 @@ export async function fetchWithCache<T = any>(
   // 3. Fetch from network
   try {
     const response = await nativeFetcher(url, options);
-    const data = await response.json() as T;
+    const data = (await response.json()) as T;
 
     // 4. Update caches
     const newCacheEntry: CacheEntry<T> = {

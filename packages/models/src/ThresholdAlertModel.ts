@@ -1,6 +1,6 @@
 import { RestfulApiModel } from 'mvvm-core';
 import { ThresholdAlertListSchema, type ThresholdAlertListData } from './schemas/alert.schema';
-import { nativeFetcher } from './utils/fetcher';
+import { fetchWithCache, nativeFetcher } from './utils/fetcher';
 import { apiRegistry } from './services/services';
 import { API_BASE_URL } from './config';
 
@@ -9,7 +9,7 @@ const { path } = apiRegistry.alert.list;
 const CONFIG = {
   baseUrl: API_BASE_URL,
   endpoint: path,
-  fetcher: nativeFetcher,
+  fetcher: fetchWithCache,
   schema: ThresholdAlertListSchema,
   initialData: [],
   validateSchema: false,
