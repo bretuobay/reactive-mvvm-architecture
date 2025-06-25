@@ -61,7 +61,7 @@ export class GreenhouseListComponent implements OnInit, OnDestroy {
     const formDataValue = this.greenhouseForm.value;
 
     if (this.editingGreenhouseId) {
-      const existingGreenhouse = this.greenhouses.find((gh) => gh.name === this.editingGreenhouseId);
+      const existingGreenhouse = this.greenhouses.find((gh) => gh.id === this.editingGreenhouseId);
       if (existingGreenhouse) {
         this.vm.updateCommand.execute({
           id: this.editingGreenhouseId,
@@ -97,7 +97,7 @@ export class GreenhouseListComponent implements OnInit, OnDestroy {
     this.editingGreenhouseId = null;
   }
 
-  handleUpdate(id?: string): void {
+  handleUpdateForm(id?: string): void {
     if (!id) return;
     const greenhouse = this.greenhouses.find((gh) => gh.id === id);
     if (greenhouse) {
